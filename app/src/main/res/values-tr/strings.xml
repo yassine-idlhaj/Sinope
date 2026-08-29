@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Home -->
+    <string name="accounts_count">%1$d hesap</string>
+    <string name="favorites_section">FAVORİLER</string>
+    <string name="all_accounts_section">TÜM HESAPLAR</string>
+    <string name="add_account">Hesap ekle</string>
+    <string name="copy_code">Kodu kopyala</string>
+    <string name="code_copied">Kod kopyalandı</string>
+    <string name="add_to_favorites">Favorilere ekle</string>
+    <string name="remove_from_favorites">Favorilerden çıkar</string>
+    <string name="edit_account">Hesabı düzenle</string>
+    <string name="delete_account">Hesabı sil</string>
+    <string name="seconds_left">%1$d sn</string>
+    <string name="totp_code_clip_label">TOTP kodu</string>
+
+    <!-- Settings -->
+    <string name="settings">Ayarlar</string>
+    <string name="section_language">DİL</string>
+    <string name="section_security">GÜVENLİK</string>
+    <string name="section_backup">YEDEKLEME</string>
+    <string name="section_danger_zone">TEHLİKELİ BÖLGE</string>
+    <string name="language">Dil</string>
+    <string name="require_on_launch">Açılışta iste</string>
+    <string name="biometric_lock">Biyometrik kilit</string>
+    <string name="screenshot_protection">Ekran görüntüsü koruması</string>
+    <string name="prevent_capture">Yakalamayı engelle</string>
+    <string name="export_accounts">Hesapları dışa aktar</string>
+    <string name="encrypted_backup">Şifreli yedek</string>
+    <string name="import_accounts">Hesapları içe aktar</string>
+    <string name="restore_from_backup">Yedekten geri yükle</string>
+    <string name="delete_all_accounts">Tüm hesapları sil</string>
+    <string name="permanently_removes_all_data">Tüm verileri kalıcı olarak siler</string>
+    <string name="stat_accounts">Hesaplar</string>
+    <string name="stat_favorites">Favoriler</string>
+    <string name="stat_security">Güvenlik</string>
+
+    <!-- Language picker -->
+    <string name="app_language">UYGULAMA DİLİ</string>
+    <string name="language_description">Sinope, bir sonraki açılışta seçiminizi uygular. Bazı sistem iletişim kutuları cihaz dilinizi kullanmaya devam edebilir.</string>
+    <string name="language_english">İngilizce</string>
+    <string name="language_arabic">Arapça</string>
+    <string name="language_french">Fransızca</string>
+    <string name="language_spanish">İspanyolca</string>
+    <string name="language_german">Almanca</string>
+    <string name="language_portuguese">Portekizce</string>
+    <string name="language_turkish">Türkçe</string>
+    <string name="language_japanese">Japonca</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Sinope\'a hoş geldiniz</string>
+    <string name="onboarding_welcome_body">Tüm hesaplarınız için güvenli doğrulama kodları oluşturun. Sırlarınız cihazınızda kalır.</string>
+    <string name="onboarding_control_title">Kodlarınız. Kontrol sizde.</string>
+    <string name="onboarding_bullet_stored_locally">Yerel olarak saklanır</string>
+    <string name="onboarding_bullet_no_account">Hesap gerekmez</string>
+    <string name="onboarding_bullet_offline">Tamamen çevrimdışı çalışır</string>
+    <string name="onboarding_bullet_backups">İstediğiniz zaman şifreli yedek alın</string>
+    <string name="onboarding_first_account_title">İlk hesabınızı ekleyelim</string>
+    <string name="onboarding_first_account_body">Sevdiğiniz hizmetten bir QR kodu tarayın veya hesabı elle ekleyin.</string>
+    <string name="skip">Atla</string>
+    <string name="back">Geri</string>
+    <string name="next">İleri</string>
+    <string name="get_started">Başla</string>
+
+    <!-- Add account -->
+    <string name="add_account_title">Hesap ekle</string>
+    <string name="tab_scan_qr_code">QR kodu tara</string>
+    <string name="tab_enter_manually">Elle gir</string>
+    <string name="account_info">HESAP BİLGİLERİ</string>
+    <string name="advanced">GELİŞMİŞ</string>
+    <string name="digits">Basamak</string>
+    <string name="period">Süre</string>
+    <string name="add_to_vault">Kasaya ekle</string>
+    <string name="account_already_exists">Hesap zaten mevcut</string>
+
+    <!-- QR scanner -->
+    <string name="camera_unavailable">Kamera kullanılamıyor</string>
+    <string name="camera_start_failed">Kamera başlatılamadı.</string>
+    <string name="scan_hint_camera_error">Bu hesabı eklemek için \"Elle gir\" sekmesine geçin.</string>
+    <string name="scan_hint_point_camera">Kameranızı sağlayıcınızın QR koduna doğrultun.</string>
+    <string name="scan_hint_permission">Sinope kamerayı yalnızca bu ekran açıkken kullanır.</string>
+    <string name="scan_again">Yeniden tara</string>
+    <string name="use_this_code">Bu kodu kullan</string>
+    <string name="qr_code_captured">QR kodu yakalandı</string>
+    <string name="camera_access_needed">Kamera erişimi gerekli</string>
+    <string name="camera_access_denied">Erişim reddedildi. QR kodu taramak için Ayarlar\'dan kamerayı etkinleştirin.</string>
+    <string name="camera_access_rationale">Kareler bu cihazda çözümlenir ve cihazdan asla çıkmaz.</string>
+    <string name="open_settings">Ayarları aç</string>
+    <string name="enable_camera">Kamerayı etkinleştir</string>
+    <string name="turn_on_flashlight">Feneri aç</string>
+    <string name="turn_off_flashlight">Feneri kapat</string>
+
+    <!-- Edit account -->
+    <string name="edit_account_title">Hesabı düzenle</string>
+    <string name="changes_saved">Değişiklikler kaydedildi</string>
+    <string name="issuer_placeholder">Sağlayıcı (ör. GitHub)</string>
+    <string name="account_name_placeholder">Hesap adı (ör. dev@example.com)</string>
+    <string name="icon">SİMGE</string>
+    <string name="accent_color">VURGU RENGİ</string>
+    <string name="saving">Kaydediliyor…</string>
+    <string name="save_changes">Değişiklikleri kaydet</string>
+    <string name="secret_algorithm">Gizli anahtar · %1$s</string>
+    <string name="secret_locked">Kilitli — değiştirmek kodlarınızı bozar</string>
+    <string name="delete_account_button">Hesabı sil</string>
+    <string name="untitled">Başlıksız</string>
+    <string name="no_account_name">Hesap adı yok</string>
+    <string name="favorite">Favori</string>
+    <string name="favorite_description">Bu hesabı kasanın en üstüne sabitle</string>
+    <string name="this_account">bu hesabı</string>
+    <string name="delete_account_dialog_title">%1$s silinsin mi?</string>
+    <string name="delete_account_dialog_body">Bu işlem hesabı ve gizli anahtarını bu cihazdan kaldırır. Yeniden eklemek için orijinal QR koduna ihtiyacınız olur.</string>
+    <string name="delete">Sil</string>
+    <string name="cancel">İptal</string>
+
+    <!-- Messages -->
+    <string name="issuer_cant_be_empty">Sağlayıcı boş olamaz</string>
+    <string name="nothing_to_save">Kaydedilecek bir şey yok</string>
+    <string name="account_not_found">Hesap bulunamadı</string>
+    <string name="couldnt_save_changes">Değişiklikler kaydedilemedi</string>
+    <string name="couldnt_delete_account">Hesap silinemedi</string>
+    <string name="dismiss">Kapat</string>
+
+</resources>

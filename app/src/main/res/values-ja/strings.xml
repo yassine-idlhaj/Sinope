@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Home -->
+    <string name="accounts_count">%1$d 件のアカウント</string>
+    <string name="favorites_section">お気に入り</string>
+    <string name="all_accounts_section">すべてのアカウント</string>
+    <string name="add_account">アカウントを追加</string>
+    <string name="copy_code">コードをコピー</string>
+    <string name="code_copied">コードをコピーしました</string>
+    <string name="add_to_favorites">お気に入りに追加</string>
+    <string name="remove_from_favorites">お気に入りから削除</string>
+    <string name="edit_account">アカウントを編集</string>
+    <string name="delete_account">アカウントを削除</string>
+    <string name="seconds_left">%1$d秒</string>
+    <string name="totp_code_clip_label">TOTP コード</string>
+
+    <!-- Settings -->
+    <string name="settings">設定</string>
+    <string name="section_language">言語</string>
+    <string name="section_security">セキュリティ</string>
+    <string name="section_backup">バックアップ</string>
+    <string name="section_danger_zone">危険な操作</string>
+    <string name="language">言語</string>
+    <string name="require_on_launch">起動時に要求</string>
+    <string name="biometric_lock">生体認証ロック</string>
+    <string name="screenshot_protection">スクリーンショット保護</string>
+    <string name="prevent_capture">撮影を禁止</string>
+    <string name="export_accounts">アカウントをエクスポート</string>
+    <string name="encrypted_backup">暗号化バックアップ</string>
+    <string name="import_accounts">アカウントをインポート</string>
+    <string name="restore_from_backup">バックアップから復元</string>
+    <string name="delete_all_accounts">すべてのアカウントを削除</string>
+    <string name="permanently_removes_all_data">すべてのデータを完全に削除します</string>
+    <string name="stat_accounts">アカウント</string>
+    <string name="stat_favorites">お気に入り</string>
+    <string name="stat_security">セキュリティ</string>
+
+    <!-- Language picker -->
+    <string name="app_language">アプリの言語</string>
+    <string name="language_description">Sinope は次回の起動時に選択した言語を使用します。一部のシステムダイアログは端末の言語のままになる場合があります。</string>
+    <string name="language_english">英語</string>
+    <string name="language_arabic">アラビア語</string>
+    <string name="language_french">フランス語</string>
+    <string name="language_spanish">スペイン語</string>
+    <string name="language_german">ドイツ語</string>
+    <string name="language_portuguese">ポルトガル語</string>
+    <string name="language_turkish">トルコ語</string>
+    <string name="language_japanese">日本語</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Sinope へようこそ</string>
+    <string name="onboarding_welcome_body">すべてのアカウントの安全な確認コードを生成します。シークレットは端末内に保管されます。</string>
+    <string name="onboarding_control_title">あなたのコードを、あなたの管理下に。</string>
+    <string name="onboarding_bullet_stored_locally">端末内に保存</string>
+    <string name="onboarding_bullet_no_account">アカウント登録は不要</string>
+    <string name="onboarding_bullet_offline">完全オフラインで動作</string>
+    <string name="onboarding_bullet_backups">いつでも暗号化バックアップを書き出せます</string>
+    <string name="onboarding_first_account_title">最初のアカウントを追加しましょう</string>
+    <string name="onboarding_first_account_body">お使いのサービスの QR コードをスキャンするか、手動でアカウントを追加します。</string>
+    <string name="skip">スキップ</string>
+    <string name="back">戻る</string>
+    <string name="next">次へ</string>
+    <string name="get_started">はじめる</string>
+
+    <!-- Add account -->
+    <string name="add_account_title">アカウントを追加</string>
+    <string name="tab_scan_qr_code">QR コードをスキャン</string>
+    <string name="tab_enter_manually">手動で入力</string>
+    <string name="account_info">アカウント情報</string>
+    <string name="advanced">詳細設定</string>
+    <string name="digits">桁数</string>
+    <string name="period">更新間隔</string>
+    <string name="add_to_vault">保管庫に追加</string>
+    <string name="account_already_exists">このアカウントは既に存在します</string>
+
+    <!-- QR scanner -->
+    <string name="camera_unavailable">カメラを利用できません</string>
+    <string name="camera_start_failed">カメラを起動できませんでした。</string>
+    <string name="scan_hint_camera_error">このアカウントを追加するには「手動で入力」に切り替えてください。</string>
+    <string name="scan_hint_point_camera">提供元の QR コードにカメラを向けてください。</string>
+    <string name="scan_hint_permission">Sinope はこの画面を開いている間だけカメラを使用します。</string>
+    <string name="scan_again">もう一度スキャン</string>
+    <string name="use_this_code">このコードを使用</string>
+    <string name="qr_code_captured">QR コードを読み取りました</string>
+    <string name="camera_access_needed">カメラへのアクセスが必要です</string>
+    <string name="camera_access_denied">アクセスが拒否されました。QR コードをスキャンするには設定でカメラを有効にしてください。</string>
+    <string name="camera_access_rationale">映像はこの端末内で解析され、外部に送信されることはありません。</string>
+    <string name="open_settings">設定を開く</string>
+    <string name="enable_camera">カメラを有効にする</string>
+    <string name="turn_on_flashlight">ライトをオンにする</string>
+    <string name="turn_off_flashlight">ライトをオフにする</string>
+
+    <!-- Edit account -->
+    <string name="edit_account_title">アカウントを編集</string>
+    <string name="changes_saved">変更を保存しました</string>
+    <string name="issuer_placeholder">発行元（例: GitHub）</string>
+    <string name="account_name_placeholder">アカウント名（例: dev@example.com）</string>
+    <string name="icon">アイコン</string>
+    <string name="accent_color">アクセントカラー</string>
+    <string name="saving">保存中…</string>
+    <string name="save_changes">変更を保存</string>
+    <string name="secret_algorithm">シークレット · %1$s</string>
+    <string name="secret_locked">ロック済み — 変更するとコードが正しく生成されなくなります</string>
+    <string name="delete_account_button">アカウントを削除</string>
+    <string name="untitled">名称未設定</string>
+    <string name="no_account_name">アカウント名なし</string>
+    <string name="favorite">お気に入り</string>
+    <string name="favorite_description">このアカウントを保管庫の先頭に固定します</string>
+    <string name="this_account">このアカウント</string>
+    <string name="delete_account_dialog_title">%1$s を削除しますか？</string>
+    <string name="delete_account_dialog_body">アカウントとそのシークレットをこの端末から削除します。再度追加するには元の QR コードが必要です。</string>
+    <string name="delete">削除</string>
+    <string name="cancel">キャンセル</string>
+
+    <!-- Messages -->
+    <string name="issuer_cant_be_empty">発行元は空にできません</string>
+    <string name="nothing_to_save">保存する変更がありません</string>
+    <string name="account_not_found">アカウントが見つかりません</string>
+    <string name="couldnt_save_changes">変更を保存できませんでした</string>
+    <string name="couldnt_delete_account">アカウントを削除できませんでした</string>
+    <string name="dismiss">閉じる</string>
+
+</resources>

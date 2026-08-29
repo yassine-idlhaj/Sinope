@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Home -->
+    <string name="accounts_count">%1$d حساب</string>
+    <string name="favorites_section">المفضلة</string>
+    <string name="all_accounts_section">كل الحسابات</string>
+    <string name="add_account">إضافة حساب</string>
+    <string name="copy_code">نسخ الرمز</string>
+    <string name="code_copied">تم نسخ الرمز</string>
+    <string name="add_to_favorites">إضافة إلى المفضلة</string>
+    <string name="remove_from_favorites">إزالة من المفضلة</string>
+    <string name="edit_account">تعديل الحساب</string>
+    <string name="delete_account">حذف الحساب</string>
+    <string name="seconds_left">%1$d ث</string>
+    <string name="totp_code_clip_label">رمز TOTP</string>
+
+    <!-- Settings -->
+    <string name="settings">الإعدادات</string>
+    <string name="section_language">اللغة</string>
+    <string name="section_security">الأمان</string>
+    <string name="section_backup">النسخ الاحتياطي</string>
+    <string name="section_danger_zone">منطقة الخطر</string>
+    <string name="language">اللغة</string>
+    <string name="require_on_launch">المطالبة عند التشغيل</string>
+    <string name="biometric_lock">القفل البيومتري</string>
+    <string name="screenshot_protection">حماية لقطات الشاشة</string>
+    <string name="prevent_capture">منع التقاط الشاشة</string>
+    <string name="export_accounts">تصدير الحسابات</string>
+    <string name="encrypted_backup">نسخة احتياطية مشفّرة</string>
+    <string name="import_accounts">استيراد الحسابات</string>
+    <string name="restore_from_backup">الاستعادة من نسخة احتياطية</string>
+    <string name="delete_all_accounts">حذف كل الحسابات</string>
+    <string name="permanently_removes_all_data">يحذف جميع البيانات نهائيًا</string>
+    <string name="stat_accounts">الحسابات</string>
+    <string name="stat_favorites">المفضلة</string>
+    <string name="stat_security">الأمان</string>
+
+    <!-- Language picker -->
+    <string name="app_language">لغة التطبيق</string>
+    <string name="language_description">يتبع Sinope اختيارك عند التشغيل التالي. قد تظل بعض مربعات حوار النظام تستخدم لغة جهازك.</string>
+    <string name="language_english">الإنجليزية</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_french">الفرنسية</string>
+    <string name="language_spanish">الإسبانية</string>
+    <string name="language_german">الألمانية</string>
+    <string name="language_portuguese">البرتغالية</string>
+    <string name="language_turkish">التركية</string>
+    <string name="language_japanese">اليابانية</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">مرحبًا بك في Sinope</string>
+    <string name="onboarding_welcome_body">أنشئ رموز تحقق آمنة لجميع حساباتك. تبقى أسرارك على جهازك.</string>
+    <string name="onboarding_control_title">رموزك. تحت سيطرتك.</string>
+    <string name="onboarding_bullet_stored_locally">مخزَّنة محليًا</string>
+    <string name="onboarding_bullet_no_account">لا حاجة إلى حساب</string>
+    <string name="onboarding_bullet_offline">يعمل دون اتصال بالكامل</string>
+    <string name="onboarding_bullet_backups">تصدير نسخ احتياطية مشفّرة في أي وقت</string>
+    <string name="onboarding_first_account_title">لنُضِف حسابك الأول</string>
+    <string name="onboarding_first_account_body">امسح رمز QR من خدمتك المفضلة أو أضف حسابًا يدويًا.</string>
+    <string name="skip">تخطٍّ</string>
+    <string name="back">رجوع</string>
+    <string name="next">التالي</string>
+    <string name="get_started">ابدأ الآن</string>
+
+    <!-- Add account -->
+    <string name="add_account_title">إضافة حساب</string>
+    <string name="tab_scan_qr_code">مسح رمز QR</string>
+    <string name="tab_enter_manually">الإدخال يدويًا</string>
+    <string name="account_info">معلومات الحساب</string>
+    <string name="advanced">إعدادات متقدمة</string>
+    <string name="digits">عدد الأرقام</string>
+    <string name="period">المدة</string>
+    <string name="add_to_vault">إضافة إلى الخزنة</string>
+    <string name="account_already_exists">الحساب موجود بالفعل</string>
+
+    <!-- QR scanner -->
+    <string name="camera_unavailable">الكاميرا غير متاحة</string>
+    <string name="camera_start_failed">تعذّر تشغيل الكاميرا.</string>
+    <string name="scan_hint_camera_error">انتقل إلى \"الإدخال يدويًا\" لإضافة هذا الحساب.</string>
+    <string name="scan_hint_point_camera">وجّه الكاميرا نحو رمز QR الخاص بمزوّد الخدمة.</string>
+    <string name="scan_hint_permission">يحتاج Sinope إلى الكاميرا فقط أثناء فتح هذه الشاشة.</string>
+    <string name="scan_again">مسح مرة أخرى</string>
+    <string name="use_this_code">استخدام هذا الرمز</string>
+    <string name="qr_code_captured">تم التقاط رمز QR</string>
+    <string name="camera_access_needed">مطلوب الوصول إلى الكاميرا</string>
+    <string name="camera_access_denied">تم رفض الإذن. فعّل الكاميرا من الإعدادات لمسح رمز QR.</string>
+    <string name="camera_access_rationale">تُحلَّل الصور على هذا الجهاز ولا تغادره أبدًا.</string>
+    <string name="open_settings">فتح الإعدادات</string>
+    <string name="enable_camera">تفعيل الكاميرا</string>
+    <string name="turn_on_flashlight">تشغيل الفلاش</string>
+    <string name="turn_off_flashlight">إيقاف الفلاش</string>
+
+    <!-- Edit account -->
+    <string name="edit_account_title">تعديل الحساب</string>
+    <string name="changes_saved">تم حفظ التغييرات</string>
+    <string name="issuer_placeholder">الجهة المُصدِرة (مثل GitHub)</string>
+    <string name="account_name_placeholder">اسم الحساب (مثل dev@example.com)</string>
+    <string name="icon">الأيقونة</string>
+    <string name="accent_color">اللون المميّز</string>
+    <string name="saving">جارٍ الحفظ…</string>
+    <string name="save_changes">حفظ التغييرات</string>
+    <string name="secret_algorithm">السر · %1$s</string>
+    <string name="secret_locked">مقفل — تعديله سيُفسد رموزك</string>
+    <string name="delete_account_button">حذف الحساب</string>
+    <string name="untitled">بلا عنوان</string>
+    <string name="no_account_name">لا يوجد اسم حساب</string>
+    <string name="favorite">مفضّل</string>
+    <string name="favorite_description">تثبيت هذا الحساب في أعلى الخزنة</string>
+    <string name="this_account">هذا الحساب</string>
+    <string name="delete_account_dialog_title">حذف %1$s؟</string>
+    <string name="delete_account_dialog_body">سيؤدي هذا إلى إزالة الحساب وسرّه من هذا الجهاز. ستحتاج إلى رمز QR الأصلي لإضافته من جديد.</string>
+    <string name="delete">حذف</string>
+    <string name="cancel">إلغاء</string>
+
+    <!-- Messages -->
+    <string name="issuer_cant_be_empty">لا يمكن ترك الجهة المُصدِرة فارغة</string>
+    <string name="nothing_to_save">لا يوجد ما يُحفظ</string>
+    <string name="account_not_found">لم يتم العثور على الحساب</string>
+    <string name="couldnt_save_changes">تعذّر حفظ التغييرات</string>
+    <string name="couldnt_delete_account">تعذّر حذف الحساب</string>
+    <string name="dismiss">إغلاق</string>
+
+</resources>

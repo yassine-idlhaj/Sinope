@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Home -->
+    <string name="accounts_count">%1$d Konten</string>
+    <string name="favorites_section">FAVORITEN</string>
+    <string name="all_accounts_section">ALLE KONTEN</string>
+    <string name="add_account">Konto hinzufügen</string>
+    <string name="copy_code">Code kopieren</string>
+    <string name="code_copied">Code kopiert</string>
+    <string name="add_to_favorites">Zu Favoriten hinzufügen</string>
+    <string name="remove_from_favorites">Aus Favoriten entfernen</string>
+    <string name="edit_account">Konto bearbeiten</string>
+    <string name="delete_account">Konto löschen</string>
+    <string name="seconds_left">%1$d s</string>
+    <string name="totp_code_clip_label">TOTP-Code</string>
+
+    <!-- Settings -->
+    <string name="settings">Einstellungen</string>
+    <string name="section_language">SPRACHE</string>
+    <string name="section_security">SICHERHEIT</string>
+    <string name="section_backup">SICHERUNG</string>
+    <string name="section_danger_zone">GEFAHRENZONE</string>
+    <string name="language">Sprache</string>
+    <string name="require_on_launch">Beim Start abfragen</string>
+    <string name="biometric_lock">Biometrische Sperre</string>
+    <string name="screenshot_protection">Screenshot-Schutz</string>
+    <string name="prevent_capture">Aufnahme verhindern</string>
+    <string name="export_accounts">Konten exportieren</string>
+    <string name="encrypted_backup">Verschlüsselte Sicherung</string>
+    <string name="import_accounts">Konten importieren</string>
+    <string name="restore_from_backup">Aus Sicherung wiederherstellen</string>
+    <string name="delete_all_accounts">Alle Konten löschen</string>
+    <string name="permanently_removes_all_data">Entfernt alle Daten dauerhaft</string>
+    <string name="stat_accounts">Konten</string>
+    <string name="stat_favorites">Favoriten</string>
+    <string name="stat_security">Sicherheit</string>
+
+    <!-- Language picker -->
+    <string name="app_language">APP-SPRACHE</string>
+    <string name="language_description">Sinope übernimmt deine Auswahl beim nächsten Start. Einige Systemdialoge verwenden möglicherweise weiterhin die Sprache deines Geräts.</string>
+    <string name="language_english">Englisch</string>
+    <string name="language_arabic">Arabisch</string>
+    <string name="language_french">Französisch</string>
+    <string name="language_spanish">Spanisch</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_portuguese">Portugiesisch</string>
+    <string name="language_turkish">Türkisch</string>
+    <string name="language_japanese">Japanisch</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Willkommen bei Sinope</string>
+    <string name="onboarding_welcome_body">Erzeuge sichere Bestätigungscodes für all deine Konten. Deine Geheimnisse bleiben auf deinem Gerät.</string>
+    <string name="onboarding_control_title">Deine Codes. Deine Kontrolle.</string>
+    <string name="onboarding_bullet_stored_locally">Lokal gespeichert</string>
+    <string name="onboarding_bullet_no_account">Kein Konto erforderlich</string>
+    <string name="onboarding_bullet_offline">Funktioniert vollständig offline</string>
+    <string name="onboarding_bullet_backups">Jederzeit verschlüsselte Sicherungen exportieren</string>
+    <string name="onboarding_first_account_title">Lass uns dein erstes Konto hinzufügen</string>
+    <string name="onboarding_first_account_body">Scanne einen QR-Code deines bevorzugten Dienstes oder füge ein Konto manuell hinzu.</string>
+    <string name="skip">Überspringen</string>
+    <string name="back">Zurück</string>
+    <string name="next">Weiter</string>
+    <string name="get_started">Loslegen</string>
+
+    <!-- Add account -->
+    <string name="add_account_title">Konto hinzufügen</string>
+    <string name="tab_scan_qr_code">QR-Code scannen</string>
+    <string name="tab_enter_manually">Manuell eingeben</string>
+    <string name="account_info">KONTODATEN</string>
+    <string name="advanced">ERWEITERT</string>
+    <string name="digits">Stellen</string>
+    <string name="period">Intervall</string>
+    <string name="add_to_vault">Zum Tresor hinzufügen</string>
+    <string name="account_already_exists">Konto existiert bereits</string>
+
+    <!-- QR scanner -->
+    <string name="camera_unavailable">Kamera nicht verfügbar</string>
+    <string name="camera_start_failed">Die Kamera konnte nicht gestartet werden.</string>
+    <string name="scan_hint_camera_error">Wechsle zu \"Manuell eingeben\", um dieses Konto hinzuzufügen.</string>
+    <string name="scan_hint_point_camera">Richte die Kamera auf den QR-Code deines Anbieters.</string>
+    <string name="scan_hint_permission">Sinope benötigt die Kamera nur, solange dieser Bildschirm geöffnet ist.</string>
+    <string name="scan_again">Erneut scannen</string>
+    <string name="use_this_code">Diesen Code verwenden</string>
+    <string name="qr_code_captured">QR-Code erfasst</string>
+    <string name="camera_access_needed">Kamerazugriff erforderlich</string>
+    <string name="camera_access_denied">Der Zugriff wurde abgelehnt. Aktiviere die Kamera in den Einstellungen, um einen QR-Code zu scannen.</string>
+    <string name="camera_access_rationale">Die Bilder werden auf diesem Gerät ausgewertet und verlassen es nie.</string>
+    <string name="open_settings">Einstellungen öffnen</string>
+    <string name="enable_camera">Kamera aktivieren</string>
+    <string name="turn_on_flashlight">Taschenlampe einschalten</string>
+    <string name="turn_off_flashlight">Taschenlampe ausschalten</string>
+
+    <!-- Edit account -->
+    <string name="edit_account_title">Konto bearbeiten</string>
+    <string name="changes_saved">Änderungen gespeichert</string>
+    <string name="issuer_placeholder">Aussteller (z. B. GitHub)</string>
+    <string name="account_name_placeholder">Kontoname (z. B. dev@example.com)</string>
+    <string name="icon">SYMBOL</string>
+    <string name="accent_color">AKZENTFARBE</string>
+    <string name="saving">Wird gespeichert…</string>
+    <string name="save_changes">Änderungen speichern</string>
+    <string name="secret_algorithm">Geheimnis · %1$s</string>
+    <string name="secret_locked">Gesperrt — eine Änderung würde deine Codes unbrauchbar machen</string>
+    <string name="delete_account_button">Konto löschen</string>
+    <string name="untitled">Ohne Titel</string>
+    <string name="no_account_name">Kein Kontoname</string>
+    <string name="favorite">Favorit</string>
+    <string name="favorite_description">Dieses Konto oben im Tresor anheften</string>
+    <string name="this_account">dieses Konto</string>
+    <string name="delete_account_dialog_title">%1$s löschen?</string>
+    <string name="delete_account_dialog_body">Dadurch werden das Konto und sein Geheimnis von diesem Gerät entfernt. Du brauchst den ursprünglichen QR-Code, um es wieder hinzuzufügen.</string>
+    <string name="delete">Löschen</string>
+    <string name="cancel">Abbrechen</string>
+
+    <!-- Messages -->
+    <string name="issuer_cant_be_empty">Der Aussteller darf nicht leer sein</string>
+    <string name="nothing_to_save">Nichts zu speichern</string>
+    <string name="account_not_found">Konto nicht gefunden</string>
+    <string name="couldnt_save_changes">Änderungen konnten nicht gespeichert werden</string>
+    <string name="couldnt_delete_account">Konto konnte nicht gelöscht werden</string>
+    <string name="dismiss">Schließen</string>
+
+</resources>
