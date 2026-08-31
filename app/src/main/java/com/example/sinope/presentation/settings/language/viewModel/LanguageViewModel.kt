@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sinope.core.utils.applyLanguages
 import com.example.sinope.domain.model.AppLanguage
-import com.example.sinope.domain.usecases.language.LanguageUseCases
+import com.example.sinope.domain.usecases.settings.language.LanguageUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

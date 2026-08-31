@@ -42,9 +42,9 @@ import com.example.sinope.core.common.BackBar
 import com.example.sinope.core.common.RowDivider
 import com.example.sinope.core.common.SectionLabel
 import com.example.sinope.core.utils.SinopeColors
-import com.example.sinope.domain.model.AppLanguage
+import com.example.sinope.presentation.model.AppLanguages
+import com.example.sinope.presentation.model.LanguageOption
 import com.example.sinope.presentation.settings.viewModel.LanguageViewModel
-import androidx.annotation.StringRes
 
 /**
  * One selectable language. [nativeName] is the language's own endonym, shown under the English
@@ -53,72 +53,8 @@ import androidx.annotation.StringRes
 
 
 /** Languages offered in the picker, in the order they appear on screen. */
-data class LanguageOption(
-    val language: AppLanguage,
-    val tag: String,
-    val flag: String,
-    @param:StringRes val nameRes: Int,
-    val nativeName: String,
-)
 
-val AppLanguages: List<LanguageOption> = listOf(
-    LanguageOption(
-        language = AppLanguage.ENGLISH,
-        tag = "en",
-        flag = "🇬🇧",
-        nameRes = R.string.language_english,
-        nativeName = "English",
-    ),
-    LanguageOption(
-        language = AppLanguage.ARABIC,
-        tag = "ar",
-        flag = "🇲🇦",
-        nameRes = R.string.language_arabic,
-        nativeName = "العربية",
-    ),
-    LanguageOption(
-        language = AppLanguage.FRENCH,
-        tag = "fr",
-        flag = "🇫🇷",
-        nameRes = R.string.language_french,
-        nativeName = "Français",
-    ),
-    LanguageOption(
-        language = AppLanguage.SPANISH,
-        tag = "es",
-        flag = "🇪🇸",
-        nameRes = R.string.language_spanish,
-        nativeName = "Español",
-    ),
-    LanguageOption(
-        language = AppLanguage.GERMAN,
-        tag = "de",
-        flag = "🇩🇪",
-        nameRes = R.string.language_german,
-        nativeName = "Deutsch",
-    ),
-    LanguageOption(
-        language = AppLanguage.PORTUGUESE,
-        tag = "pt",
-        flag = "🇵🇹",
-        nameRes = R.string.language_portuguese,
-        nativeName = "Português",
-    ),
-    LanguageOption(
-        language = AppLanguage.TURKISH,
-        tag = "tr",
-        flag = "🇹🇷",
-        nameRes = R.string.language_turkish,
-        nativeName = "Türkçe",
-    ),
-    LanguageOption(
-        language = AppLanguage.JAPANESE,
-        tag = "ja",
-        flag = "🇯🇵",
-        nameRes = R.string.language_japanese,
-        nativeName = "日本語",
-    ),
-)
+
 
 /**
  * Language screen: a single-choice list of the languages Sinope ships with. Presentation only —
