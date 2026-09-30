@@ -6,7 +6,7 @@ class IsAccountExists(
     private val repository: IAccountRepository
 ) {
 
-    suspend operator fun invoke(secret: String): Boolean{
-        return repository.getAccountBySecret(secret) != null
+    suspend operator fun invoke(issuer: String,accountName:String): Boolean{
+        return repository.accountExists(issuer,accountName)
     }
 }

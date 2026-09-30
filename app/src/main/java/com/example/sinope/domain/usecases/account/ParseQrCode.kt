@@ -20,6 +20,16 @@ class ParseQrCode {
 
         val secret = uri.getQueryParameter("secret") ?: throw IllegalArgumentException("Missing secret parameter")
 
+        val (labelIssuer, accountName) = parseLabel(uri.pathSegments.firstOrNull())
+
+        // The spec says the issuer query parameter wins over the label prefix
+        val issuer = uri.getQueryParameter("issuer")
+            ?.trim()
+            ?.takeIf { it.isNotEmpty() }
+            ?: labelIssuer
+            ?: ""
+
+
         val algorithm = uri.getQueryParameter("algorithm")
             ?: "SHA1"
 
@@ -32,8 +42,8 @@ class ParseQrCode {
             ?: 30
 
         return Account(
-            issuer = uri.pathSegments.firstOrNull() ?: "",
-            accountName = "",
+            issuer = issuer,
+            accountName = accountName,
             secret = secret,
             algorithm = algorithm,
             digits = digits,
@@ -44,6 +54,28 @@ class ParseQrCode {
         )
 
 
+    }
+
+    /**
+     * Splits an otpauth label into (issuer, accountName).
+     *
+     * "GitHub:alice"   -> ("GitHub", "alice")
+     * "GitHub: alice"  -> ("GitHub", "alice")
+     * "alice"          -> (null, "alice")
+     * null / blank     -> (null, "")
+     */
+    private fun parseLabel(label: String?): Pair<String?, String> {
+        if (label.isNullOrBlank()) return null to ""
+
+        if (!label.contains(":")) return null to label.trim()
+
+        val issuer = label.substringBefore(":")
+            .trim()
+            .takeIf { it.isNotEmpty() }
+
+        val accountName = label.substringAfter(":").trim()
+
+        return issuer to accountName
     }
 }
 

@@ -74,13 +74,12 @@ private val onboardingPages = listOf(
 
 /**
  * First-run onboarding: three swipeable pages sharing the Sinope's dark-neon look, each with a
- * static line-art illustration of what the page describes. UI only — [onFinish] fires from both
+ * static line-art illustration of what the page describes. UI only — completion is reported
  * the "Skip" action and the final "Get Started" button.
  */
 @Composable
 fun OnboardingScreen(
     modifier: Modifier = Modifier,
-    onFinish: () -> Unit = {},
     onEvent: (OnBoardingEvent) -> Unit = {},
 ) {
     val pagerState = rememberPagerState(pageCount = { onboardingPages.size })
@@ -109,7 +108,12 @@ fun OnboardingScreen(
                     color = SinopeColors.TextSecondary,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.clickable(onClick = onFinish),
+                    // Same event as "Get Started": skipping still means "don't show me
+                    // this again", and it is the event — not a callback — that the graph
+                    // listens to in order to navigate away.
+                    modifier = Modifier.clickable {
+                        onEvent(OnBoardingEvent.SaveAppEntry)
+                    },
                 )
             }
         }

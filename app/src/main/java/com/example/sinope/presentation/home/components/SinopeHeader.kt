@@ -21,7 +21,12 @@ import com.example.sinope.R
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun SinopeHeader(accountCount: Int, onOpenSettings: () -> Unit) {
+fun SinopeHeader(
+    accountCount: Int,
+    onOpenSettings: () -> Unit,
+    searchActive: Boolean = false,
+    onToggleSearch: () -> Unit = {},
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -47,8 +52,17 @@ fun SinopeHeader(accountCount: Int, onOpenSettings: () -> Unit) {
             )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            HeaderIconButton(Icons.Outlined.Search, onClick = {})
-            HeaderIconButton(Icons.Outlined.Person, onClick = onOpenSettings)
+            HeaderIconButton(
+                icon = Icons.Outlined.Search,
+                onClick = onToggleSearch,
+                active = searchActive,
+                contentDescription = stringResource(R.string.search),
+            )
+            HeaderIconButton(
+                icon = Icons.Outlined.Person,
+                onClick = onOpenSettings,
+                contentDescription = stringResource(R.string.settings),
+            )
         }
     }
 }

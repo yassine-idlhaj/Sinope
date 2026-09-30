@@ -15,6 +15,13 @@
     <string name="seconds_left">%1$d s</string>
     <string name="totp_code_clip_label">Código TOTP</string>
 
+    <!-- Search -->
+    <string name="search">Buscar</string>
+    <string name="search_accounts">Buscar cuentas…</string>
+    <string name="clear_search">Borrar búsqueda</string>
+    <string name="search_no_results_title">Sin resultados</string>
+    <string name="search_no_results_body">Nada en tu bóveda coincide con «%1$s».</string>
+
     <!-- Settings -->
     <string name="settings">Ajustes</string>
     <string name="section_language">IDIOMA</string>
@@ -37,8 +44,11 @@
     <string name="stat_security">Seguridad</string>
 
     <!-- Language picker -->
+    <string name="language_subtitle">Elige el idioma de la app</string>
     <string name="app_language">IDIOMA DE LA APLICACIÓN</string>
     <string name="language_description">Sinope seguirá tu selección en el próximo inicio. Algunos diálogos del sistema pueden seguir usando el idioma de tu dispositivo.</string>
+    <string name="language_system">Predeterminado del sistema</string>
+    <string name="language_system_subtitle">Seguir el idioma del dispositivo</string>
     <string name="language_english">Inglés</string>
     <string name="language_arabic">Árabe</string>
     <string name="language_french">Francés</string>
@@ -71,7 +81,7 @@
     <string name="advanced">AVANZADO</string>
     <string name="digits">Dígitos</string>
     <string name="period">Período</string>
-    <string name="add_to_vault">Añadir a la caja fuerte</string>
+    <string name="add_to_vault">Guardar cuenta</string>
     <string name="account_already_exists">La cuenta ya existe</string>
 
     <!-- QR scanner -->
@@ -121,4 +131,87 @@
     <string name="couldnt_delete_account">No se pudo eliminar la cuenta</string>
     <string name="dismiss">Cerrar</string>
 
+    <!-- Backup, import and manual entry -->
+    <string name="export_dialog_title">Cifrar copia de seguridad</string>
+    <string name="export_dialog_body">Elige una contraseña para esta copia. La necesitarás para importarla en cualquier dispositivo. Sinope no puede recuperarla si la olvidas.</string>
+    <string name="backup_password">Contraseña de la copia</string>
+    <string name="backup_password_confirm">Confirmar contraseña</string>
+    <string name="backup_password_too_short">Usa al menos %1$d caracteres</string>
+    <string name="backup_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="export_continue">Continuar</string>
+    <string name="export_no_accounts">No hay cuentas para exportar</string>
+    <string name="export_failed">Error al exportar. Inténtalo de nuevo.</string>
+    <string name="exporting">Cifrando copia de seguridad…</string>
+    <string name="import_dialog_title">Desbloquear copia de seguridad</string>
+    <string name="import_dialog_body">Introduce la contraseña usada al crear esta copia.</string>
+    <string name="import_open">Abrir</string>
+    <string name="import_wrong_password">Contraseña incorrecta o archivo modificado</string>
+    <string name="import_invalid_file">Este archivo no es una copia de Sinope</string>
+    <string name="import_failed">Error al importar. Inténtalo de nuevo.</string>
+    <string name="import_pick_another_file">Elegir otro archivo</string>
+    <string name="import_waiting_for_file">Elige un archivo de copia de seguridad…</string>
+    <string name="import_decrypting">Descifrando copia de seguridad…</string>
+    <string name="import_saving">Guardando cuentas…</string>
+    <string name="import_select_all">Seleccionar / deseleccionar todo</string>
+    <string name="import_duplicate_badge">DUPLICADO</string>
+    <string name="done">Hecho</string>
+    <string name="hint_secret">Clave secreta</string>
+    <string name="manual_error_missing_name">Introduce un emisor o un nombre de cuenta</string>
+    <string name="manual_error_missing_secret">Introduce la clave secreta</string>
+    <string name="manual_error_invalid_secret">Esta clave secreta no es válida</string>
+    <string name="qr_invalid_code">Este código QR no es un código de autenticación</string>
+    <string name="account_save_failed">No se pudo guardar la cuenta</string>
+
+    <!-- Counted messages: plural forms per language -->
+    <plurals name="export_success">
+        <item quantity="one">%1$d cuenta exportada</item>
+        <item quantity="many">%1$d de cuentas exportadas</item>
+        <item quantity="other">%1$d cuentas exportadas</item>
+    </plurals>
+    <plurals name="import_found">
+        <item quantity="one">%1$d cuenta en esta copia</item>
+        <item quantity="many">%1$d de cuentas en esta copia</item>
+        <item quantity="other">%1$d cuentas en esta copia</item>
+    </plurals>
+    <plurals name="import_duplicates_found">
+        <item quantity="one">%1$d ya está en Sinope, desmarcada abajo</item>
+        <item quantity="many">%1$d de cuentas ya están en Sinope, desmarcadas abajo</item>
+        <item quantity="other">%1$d ya están en Sinope, desmarcadas abajo</item>
+    </plurals>
+    <plurals name="import_action">
+        <item quantity="one">Importar %1$d cuenta</item>
+        <item quantity="many">Importar %1$d de cuentas</item>
+        <item quantity="other">Importar %1$d cuentas</item>
+    </plurals>
+    <plurals name="import_success">
+        <item quantity="one">%1$d cuenta importada</item>
+        <item quantity="many">%1$d de cuentas importadas</item>
+        <item quantity="other">%1$d cuentas importadas</item>
+    </plurals>
+
+    <!-- Delete all accounts -->
+    <string name="delete_all_dialog_body">Esto elimina todas las cuentas y sus secretos de este dispositivo. No se puede deshacer.</string>
+    <string name="delete_all_dialog_backup_hint">Exporta una copia de seguridad antes si podrías necesitar estos códigos.</string>
+    <string name="delete_all_confirm">Eliminar todo</string>
+    <string name="delete_all_in_progress">Eliminando…</string>
+    <string name="delete_all_nothing_to_delete">No hay cuentas que eliminar</string>
+    <string name="delete_all_success">Todas las cuentas eliminadas</string>
+    <string name="delete_all_failed">No se pudieron eliminar las cuentas</string>
+    <plurals name="delete_all_dialog_title">
+        <item quantity="one">¿Eliminar tu única cuenta?</item>
+        <item quantity="many">¿Eliminar las %1$d cuentas?</item>
+        <item quantity="other">¿Eliminar las %1$d cuentas?</item>
+    </plurals>
+
+    <!-- App lock -->
+    <string name="locked_title">Sinope está bloqueado</string>
+    <string name="locked_subtitle">Autentícate para abrir tu bóveda.</string>
+    <string name="unlock">Desbloquear</string>
+    <string name="biometric_prompt_title">Desbloquear Sinope</string>
+    <string name="biometric_prompt_subtitle">Autentícate para acceder a tus cuentas</string>
+    <string name="biometric_error_no_hardware">Este dispositivo no tiene hardware biométrico.</string>
+    <string name="biometric_error_unavailable">El hardware biométrico no está disponible ahora mismo.</string>
+    <string name="biometric_error_none_enrolled">No hay datos biométricos registrados en este dispositivo.</string>
+    <string name="biometric_error_generic">La autenticación biométrica no está disponible.</string>
+    <string name="biometric_error_cancelled">Autenticación cancelada.</string>
 </resources>

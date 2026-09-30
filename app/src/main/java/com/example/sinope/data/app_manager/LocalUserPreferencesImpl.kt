@@ -1,7 +1,6 @@
 package com.example.sinope.data.app_manager
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -11,7 +10,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.sinope.core.utils.Constants
 import com.example.sinope.domain.repository.app_manager.ILocalUserPreferences
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 
@@ -20,7 +18,6 @@ class LocalUserPreferencesImpl(
 ): ILocalUserPreferences {
 
     override suspend fun saveAppEntry() {
-        Log.d("LocalUserPreferencesImpl", "saveAppEntry: ${context.dataStore.data.first()[PreferenceKeys.APP_ENTRY]}")
         context.dataStore.edit { settings ->
             settings[PreferenceKeys.APP_ENTRY] = true
         }
@@ -43,6 +40,32 @@ class LocalUserPreferencesImpl(
             preferences[PreferenceKeys.LANGUAGE] ?: "SYSTEM"
         }
     }
+
+    override fun readBiometricLock(): Flow<Boolean> {
+        return context.dataStore.data.map { preferences ->
+            preferences[PreferenceKeys.BIOMETRIC_LOCK] ?: false
+        }
+    }
+
+    override suspend fun saveBiometricLock(biometricLock: Boolean) {
+        context.dataStore.edit { settings ->
+            settings[PreferenceKeys.BIOMETRIC_LOCK] = biometricLock;
+        }
+    }
+
+    override fun readScreenshotProtection(): Flow<Boolean> {
+       return  context.dataStore.data.map { preferences ->
+           preferences[PreferenceKeys.SCREENSHOT_PROTECTION] ?: false
+       }
+    }
+
+    override suspend fun saveScreenshotProtection(screenshotProtection: Boolean) {
+        context.dataStore.edit { settings ->
+            settings[PreferenceKeys.SCREENSHOT_PROTECTION] = screenshotProtection;
+        }
+    }
+
+
 }
 
 private val readOnlyProperty = preferencesDataStore(name = Constants.USER_SETTINGS)
@@ -51,4 +74,9 @@ val Context.dataStore: DataStore<Preferences> by readOnlyProperty
 private object PreferenceKeys {
     val APP_ENTRY = booleanPreferencesKey(Constants.APP_ENTRY)
     val LANGUAGE = stringPreferencesKey(Constants.LANGUAGE)
+
+    val BIOMETRIC_LOCK = booleanPreferencesKey(Constants.BIOMETRIC_LOCK)
+
+    val SCREENSHOT_PROTECTION = booleanPreferencesKey(Constants.SCREENSHOT_PROTECTION)
+
 }

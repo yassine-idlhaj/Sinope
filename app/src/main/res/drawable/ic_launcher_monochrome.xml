@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Shackle -->
+    <path
+        android:pathData="M43,49V40A11,11 0,0 1,65,40V49"
+        android:strokeColor="#FF000000"
+        android:strokeWidth="7"
+        android:strokeLineCap="butt"
+        android:fillColor="#00000000" />
+    <!-- Countdown dial (remaining time) -->
+    <path
+        android:pathData="M54,62L54,44A18,18 0,1 0,69.59,53.00Z"
+        android:fillColor="#FF000000" />
+</vector>

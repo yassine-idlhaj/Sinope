@@ -15,6 +15,13 @@
     <string name="seconds_left">%1$d秒</string>
     <string name="totp_code_clip_label">TOTP コード</string>
 
+    <!-- Search -->
+    <string name="search">検索</string>
+    <string name="search_accounts">アカウントを検索…</string>
+    <string name="clear_search">検索をクリア</string>
+    <string name="search_no_results_title">一致なし</string>
+    <string name="search_no_results_body">「%1$s」に一致するものは保管庫にありません。</string>
+
     <!-- Settings -->
     <string name="settings">設定</string>
     <string name="section_language">言語</string>
@@ -37,8 +44,11 @@
     <string name="stat_security">セキュリティ</string>
 
     <!-- Language picker -->
+    <string name="language_subtitle">アプリの言語を選択</string>
     <string name="app_language">アプリの言語</string>
     <string name="language_description">Sinope は次回の起動時に選択した言語を使用します。一部のシステムダイアログは端末の言語のままになる場合があります。</string>
+    <string name="language_system">システムのデフォルト</string>
+    <string name="language_system_subtitle">端末の言語に従う</string>
     <string name="language_english">英語</string>
     <string name="language_arabic">アラビア語</string>
     <string name="language_french">フランス語</string>
@@ -71,7 +81,7 @@
     <string name="advanced">詳細設定</string>
     <string name="digits">桁数</string>
     <string name="period">更新間隔</string>
-    <string name="add_to_vault">保管庫に追加</string>
+    <string name="add_to_vault">アカウントを保存</string>
     <string name="account_already_exists">このアカウントは既に存在します</string>
 
     <!-- QR scanner -->
@@ -121,4 +131,75 @@
     <string name="couldnt_delete_account">アカウントを削除できませんでした</string>
     <string name="dismiss">閉じる</string>
 
+    <!-- Backup, import and manual entry -->
+    <string name="export_dialog_title">バックアップを暗号化</string>
+    <string name="export_dialog_body">このバックアップのパスワードを設定してください。どの端末でも復元に必要です。忘れた場合、Sinope でも復元できません。</string>
+    <string name="backup_password">バックアップのパスワード</string>
+    <string name="backup_password_confirm">パスワードを確認</string>
+    <string name="backup_password_too_short">%1$d 文字以上で入力してください</string>
+    <string name="backup_password_mismatch">パスワードが一致しません</string>
+    <string name="export_continue">続ける</string>
+    <string name="export_no_accounts">エクスポートできるアカウントがありません</string>
+    <string name="export_failed">エクスポートに失敗しました。もう一度お試しください。</string>
+    <string name="exporting">バックアップを暗号化しています…</string>
+    <string name="import_dialog_title">バックアップのロックを解除</string>
+    <string name="import_dialog_body">このバックアップ作成時に使用したパスワードを入力してください。</string>
+    <string name="import_open">開く</string>
+    <string name="import_wrong_password">パスワードが違うか、ファイルが変更されています</string>
+    <string name="import_invalid_file">このファイルは Sinope のバックアップではありません</string>
+    <string name="import_failed">インポートに失敗しました。もう一度お試しください。</string>
+    <string name="import_pick_another_file">別のファイルを選択</string>
+    <string name="import_waiting_for_file">バックアップファイルを選択してください…</string>
+    <string name="import_decrypting">バックアップを復号しています…</string>
+    <string name="import_saving">アカウントを保存しています…</string>
+    <string name="import_select_all">すべて選択 / 解除</string>
+    <string name="import_duplicate_badge">重複</string>
+    <string name="done">完了</string>
+    <string name="hint_secret">秘密鍵</string>
+    <string name="manual_error_missing_name">発行元またはアカウント名を入力してください</string>
+    <string name="manual_error_missing_secret">秘密鍵を入力してください</string>
+    <string name="manual_error_invalid_secret">この秘密鍵は無効です</string>
+    <string name="qr_invalid_code">この QR コードは認証コードではありません</string>
+    <string name="account_save_failed">アカウントを保存できませんでした</string>
+
+    <!-- Counted messages: plural forms per language -->
+    <plurals name="export_success">
+        <item quantity="other">%1$d 件のアカウントをエクスポートしました</item>
+    </plurals>
+    <plurals name="import_found">
+        <item quantity="other">このバックアップに %1$d 件のアカウント</item>
+    </plurals>
+    <plurals name="import_duplicates_found">
+        <item quantity="other">%1$d 件は登録済みのため未選択です</item>
+    </plurals>
+    <plurals name="import_action">
+        <item quantity="other">%1$d 件をインポート</item>
+    </plurals>
+    <plurals name="import_success">
+        <item quantity="other">%1$d 件のアカウントをインポートしました</item>
+    </plurals>
+
+    <!-- Delete all accounts -->
+    <string name="delete_all_dialog_body">このデバイスからすべてのアカウントとその秘密鍵を削除します。元に戻せません。</string>
+    <string name="delete_all_dialog_backup_hint">これらのコードが再び必要になる場合は、先にバックアップを書き出してください。</string>
+    <string name="delete_all_confirm">すべて削除</string>
+    <string name="delete_all_in_progress">削除中…</string>
+    <string name="delete_all_nothing_to_delete">削除するアカウントがありません</string>
+    <string name="delete_all_success">すべてのアカウントを削除しました</string>
+    <string name="delete_all_failed">アカウントを削除できませんでした</string>
+    <plurals name="delete_all_dialog_title">
+        <item quantity="other">%1$d 件のアカウントをすべて削除しますか？</item>
+    </plurals>
+
+    <!-- App lock -->
+    <string name="locked_title">Sinope はロックされています</string>
+    <string name="locked_subtitle">認証して保管庫を開いてください。</string>
+    <string name="unlock">ロック解除</string>
+    <string name="biometric_prompt_title">Sinope のロック解除</string>
+    <string name="biometric_prompt_subtitle">認証してアカウントにアクセスします</string>
+    <string name="biometric_error_no_hardware">このデバイスには生体認証ハードウェアがありません。</string>
+    <string name="biometric_error_unavailable">生体認証ハードウェアは現在利用できません。</string>
+    <string name="biometric_error_none_enrolled">このデバイスには生体情報が登録されていません。</string>
+    <string name="biometric_error_generic">生体認証を利用できません。</string>
+    <string name="biometric_error_cancelled">認証をキャンセルしました。</string>
 </resources>

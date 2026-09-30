@@ -27,49 +27,47 @@ import com.example.sinope.core.utils.SinopeColors
 import com.example.sinope.presentation.addaccount.components.AddTab
 import com.example.sinope.presentation.addaccount.components.ManualEntryTab
 import com.example.sinope.presentation.addaccount.components.ScanQrTab
+import androidx.annotation.StringRes
+import com.example.sinope.domain.usecases.account.ManualEntryValidation
 import com.example.sinope.presentation.addaccount.viewModel.AddAccountEvent
 import com.example.sinope.presentation.addaccount.viewModel.AddAccountUiEvent
 import com.example.sinope.presentation.addaccount.viewModel.AddAccountViewModel
 import com.example.sinope.R
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 
 /**
  * Add Account screen: a "Scan QR Code" / "Enter Manually" tab pair. The QR tab runs a live camera
- * scanner; the manual form still uses read-only mock rows in place of real inputs.
+ * scanner; the manual tab is a real form validated and saved by [AddAccountViewModel].
  *
- * @param onQrScanned raw payload of a QR code the user confirmed (typically an `otpauth://` URI).
+ * @param onAccountAdded called once the account is stored, for both tabs.
  */
 @Composable
 fun AddAccountScreen(
     modifier: Modifier = Modifier,
     onBack: () -> Unit = {},
-    onSave: () -> Unit = {},
     onAccountAdded: () -> Unit = {},
     viewModel: AddAccountViewModel = hiltViewModel()
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    LaunchedEffect(state.isSaving) {
-        if (state.isSaving) {
-            onAccountAdded()
-        }
-    }
-
     val sinopeSnackbarHostState = remember { SnackbarHostState() }
-    val context = LocalContext.current
+    val resources = LocalResources.current
 
 
     LaunchedEffect(Unit) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is AddAccountUiEvent.AccountAlreadyExists -> {
+                is AddAccountUiEvent.ShowMessage -> {
                     sinopeSnackbarHostState.showSinopeSnackbar(
-                        context.getString(event.messageRes),
+                        resources.getString(event.messageRes),
                         event.tone,
                     )
                 }
+
+                // Emitted after the account is actually stored, for both QR and manual entry.
+                AddAccountUiEvent.AccountSaved -> onAccountAdded()
             }
         }
     }
@@ -108,7 +106,20 @@ fun AddAccountScreen(
                     }
                 )
             } else {
-                ManualEntryTab(onSave = onSave)
+                ManualEntryTab(
+                    issuer = state.issuer,
+                    accountName = state.accountName,
+                    secret = state.secret,
+                    digits = state.digits,
+                    period = state.period,
+                    errorMessage = state.manualError?.let { stringResource(manualErrorRes(it)) },
+                    onIssuerChange = { viewModel.onEvent(AddAccountEvent.IssuerChanged(it)) },
+                    onAccountNameChange = { viewModel.onEvent(AddAccountEvent.AccountNameChanged(it)) },
+                    onSecretChange = { viewModel.onEvent(AddAccountEvent.SecretChanged(it)) },
+                    onDigitsChange = { viewModel.onEvent(AddAccountEvent.DigitsChanged(it)) },
+                    onPeriodChange = { viewModel.onEvent(AddAccountEvent.PeriodChanged(it)) },
+                    onSave = { viewModel.onEvent(AddAccountEvent.SaveAccount) },
+                )
             }
 
         }
@@ -132,4 +143,12 @@ fun AddAccountScreen(
 @Composable
 private fun AddAccountPreview() {
     AddAccountScreen()
+}
+
+/** Text belongs to the UI, so the domain's validation result is mapped to a string here. */
+@StringRes
+private fun manualErrorRes(validation: ManualEntryValidation): Int = when (validation) {
+    ManualEntryValidation.MissingName -> R.string.manual_error_missing_name
+    ManualEntryValidation.MissingSecret -> R.string.manual_error_missing_secret
+    ManualEntryValidation.InvalidSecret, ManualEntryValidation.Valid -> R.string.manual_error_invalid_secret
 }

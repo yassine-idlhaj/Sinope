@@ -1,7 +1,6 @@
-package com.example.sinope.presentation.settings.viewModel
+package com.example.sinope.presentation.settings.language.viewModel
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sinope.core.utils.applyLanguages
@@ -37,7 +36,6 @@ class LanguageViewModel @Inject constructor(
     fun selectLanguage(context: Context, language: AppLanguage){
         viewModelScope.launch {
             languageUseCases.saveLanguage(language)
-            Log.d("LANg",language.name)
             applyLanguages(context, language)
         }
     }

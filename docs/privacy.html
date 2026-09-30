@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · Sinope</title>
+<meta name="description" content="How Sinope handles your data. In short: it doesn't leave your device.">
+<style>
+/* Deliberately no webfonts: this page describes an app that makes no network
+   requests, so the page that says so shouldn't make one either. */
+:root{
+  --ink:#16161a; --ink-2:#4a4a55; --ink-3:#74747f;
+  --rule:#e5e5ea; --rule-2:#f1f1f5; --bg:#fff; --bg-2:#fbfbfc;
+  --cyan:#00b8dd; --violet:#7c3aed; --pink:#d926e0;
+  --rail:280px;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --ink:#e9e9ef; --ink-2:#a9a9b9; --ink-3:#7c7c8d;
+         --rule:#25252e; --rule-2:#1b1b22; --bg:#0e0e12; --bg-2:#131319;
+         --cyan:#22d3ee; --violet:#a78bfa; --pink:#e879f9; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.7; letter-spacing:-.003em;
+  -webkit-font-smoothing:antialiased;
+  display:grid; grid-template-columns:var(--rail) minmax(0,1fr);
+}
+
+/* ── left rail ────────────────────────────────────────── */
+aside{
+  grid-column:1; border-right:1px solid var(--rule); background:var(--bg-2);
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  padding:2.5rem 1.75rem 2.5rem 2.25rem;
+}
+.brand{display:flex;align-items:center;gap:.6rem;margin-bottom:2.25rem}
+.brand svg{display:block;border-radius:8px;flex:none}
+.brand span{font-weight:650;letter-spacing:.14em;font-size:.74rem;text-transform:uppercase;color:var(--ink-2)}
+.rail-title{font-size:.95rem;font-weight:620;letter-spacing:-.01em;margin:0 0 .35rem}
+.rail-meta{font-size:.76rem;color:var(--ink-3);margin:0 0 1.9rem;line-height:1.5}
+.rail-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;margin:0 0 .7rem}
+aside ol{margin:0;padding:0;list-style:none;counter-reset:toc}
+aside li{counter-increment:toc}
+aside a{
+  display:block;font-size:.845rem;line-height:1.4;color:var(--ink-3);text-decoration:none;
+  padding:.36rem 0 .36rem .75rem;border-left:2px solid var(--rule);transition:color .12s,border-color .12s;
+}
+aside a::before{content:counter(toc);margin-right:.5rem;font-variant-numeric:tabular-nums;opacity:.6}
+aside a:hover{color:var(--ink)}
+aside a.active{color:var(--violet);border-left-color:var(--violet);font-weight:550}
+
+/* ── content column ───────────────────────────────────── */
+.content{grid-column:2;padding:3.75rem 3rem 5rem 3.5rem;max-width:58rem}
+h1{font-size:2.9rem;line-height:1.08;letter-spacing:-.034em;font-weight:680;margin:0 0 1.1rem}
+.lede{font-size:1.18rem;line-height:1.58;color:var(--ink-2);margin:0 0 2.1rem;max-width:36rem}
+.accent{height:3px;width:100%;border-radius:2px;margin:0 0 2.5rem;
+  background:linear-gradient(90deg,var(--cyan),var(--violet) 52%,var(--pink))}
+
+.glance{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin:0 0 1rem;max-width:44rem}
+.glance div{background:var(--bg);padding:1.15rem 1.15rem}
+.glance dt{font-size:1.4rem;font-weight:670;letter-spacing:-.02em;line-height:1.2;margin-bottom:.28rem}
+.glance dd{margin:0;font-size:.84rem;line-height:1.45;color:var(--ink-3)}
+
+main{counter-reset:sec;padding-bottom:26vh}
+section{counter-increment:sec;padding-top:3rem;scroll-margin-top:2rem;max-width:44rem}
+h2{font-size:1.34rem;letter-spacing:-.018em;font-weight:650;margin:0 0 .9rem;line-height:1.3}
+section h2::before{content:counter(sec) ". ";color:var(--ink-3);font-weight:500;
+  font-variant-numeric:tabular-nums}
+p{margin:0 0 1.05rem;color:var(--ink-2)}
+p strong{color:var(--ink);font-weight:600}
+ul{margin:0 0 1.05rem;padding-left:1.15rem;color:var(--ink-2)}
+li{margin:.4rem 0}
+li::marker{color:var(--ink-3)}
+a{color:var(--violet)}
+code{font-family:var(--mono);font-size:.86em;background:var(--rule-2);
+  padding:.12em .4em;border-radius:4px;color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;margin:1.35rem 0;font-size:.93rem}
+caption{text-align:left;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;padding-bottom:.7rem}
+th{text-align:left;font-weight:600;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);padding:0 1rem .6rem 0;border-bottom:1px solid var(--rule)}
+td{padding:.85rem 1rem .85rem 0;border-bottom:1px solid var(--rule-2);
+  vertical-align:top;color:var(--ink-2)}
+td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+footer{margin:4rem 0 0;padding-top:1.75rem;border-top:1px solid var(--rule);max-width:44rem;
+  font-size:.86rem;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:.4rem 2rem;
+  justify-content:space-between}
+footer a{color:var(--ink-2)}
+
+/* ── narrow screens: rail becomes a header ────────────── */
+@media (max-width:60rem){
+  body{grid-template-columns:1fr}
+  aside{position:static;height:auto;grid-column:1;border-right:0;border-bottom:1px solid var(--rule);
+    padding:2rem 1.5rem}
+  aside ol{columns:2;column-gap:1.5rem}
+  aside li{break-inside:avoid}
+  aside a{border-left:0;padding-left:0}
+  aside a.active{border-left:0}
+  .content{grid-column:1;padding:2.5rem 1.5rem 4rem}
+  h1{font-size:2.1rem}
+}
+@media (max-width:34rem){
+  .glance{grid-template-columns:1fr}
+  aside ol{column-gap:1rem}
+  aside a{font-size:.8rem;padding:.3rem 0}
+}
+@media print{
+  main{padding-bottom:0}
+  body{display:block;font-size:11pt;background:#fff;color:#000}
+  aside,.accent{display:none}
+  .content{padding:0;max-width:none}
+  section{page-break-inside:avoid;padding-top:1.4rem}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">
+    <svg width="24" height="24" viewBox="0 0 108 108" aria-hidden="true">
+      <defs><linearGradient id="m" x1="0" y1="0" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#00D4FF"/><stop offset=".5" stop-color="#7C3AED"/>
+        <stop offset="1" stop-color="#E040FB"/></linearGradient></defs>
+      <rect width="108" height="108" fill="url(#m)"/>
+      <path d="M43,49V40A11,11 0,0 1,65,40V49" fill="none" stroke="#F0F0FF" stroke-width="7"/>
+      <path d="M54,62L54,44A18,18 0,1 0,69.59,53.00Z" fill="#F0F0FF"/>
+      <path d="M54,62L54,44A18,18 0,0 1,69.59,53.00Z" fill="#F0F0FF" fill-opacity=".3"/>
+    </svg>
+    <span>Sinope</span>
+  </div>
+  <p class="rail-title">Privacy Policy</p>
+  <p class="rail-meta">Version 1.0 · Effective 30 September 2026</p>
+  <p class="rail-label">Contents</p>
+  <ol>
+    <li><a href="#scope">Scope</a></li>
+    <li><a href="#stored">What is stored on your device</a></li>
+    <li><a href="#network">Network access</a></li>
+    <li><a href="#camera">Camera</a></li>
+    <li><a href="#biometrics">Biometrics</a></li>
+    <li><a href="#backups">Backups you create</a></li>
+    <li><a href="#system-backup">Android system backup</a></li>
+    <li><a href="#sharing">Sharing and disclosure</a></li>
+    <li><a href="#permissions">Permissions</a></li>
+    <li><a href="#children">Children</a></li>
+    <li><a href="#control">Your control and deletion</a></li>
+    <li><a href="#changes">Changes to this policy</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</aside>
+
+<div class="content">
+
+<h1>Privacy Policy</h1>
+<p class="lede">Sinope generates your two-factor codes entirely on your device. It has no servers,
+no accounts, and no way to reach the internet.</p>
+<div class="accent"></div>
+
+<dl class="glance">
+  <div><dt>Zero</dt><dd>pieces of personal data collected</dd></div>
+  <div><dt>No network</dt><dd>the app cannot make any connection</dd></div>
+  <div><dt>2</dt><dd>permissions requested, both optional</dd></div>
+</dl>
+
+<main>
+<section id="scope">
+  <h2>Scope</h2>
+  <p>This policy describes how the Sinope Android application handles information. Sinope is a
+  two-factor authentication app: it stores the shared secrets issued by your online services and
+  uses them to generate time-based one-time passcodes (TOTP).</p>
+  <p>Sinope is operated entirely on your device. There is no Sinope account, no sign-in, and no
+  backend service.</p>
+</section>
+
+<section id="stored">
+  <h2>What is stored on your device</h2>
+  <p>Sinope writes two kinds of information to its private storage area, which other applications
+  cannot read.</p>
+  <table>
+    <caption>Stored data</caption>
+    <tr><th>Data</th><th>Purpose</th><th>Protection</th></tr>
+    <tr>
+      <td>Accounts</td>
+      <td>The issuer, account name, icon and colour you choose, and the shared secret used to
+          generate codes.</td>
+      <td>Each secret is encrypted with AES-256-GCM. The key is generated inside the Android
+          Keystore, which is designed so that key material cannot be extracted from the device.</td>
+    </tr>
+    <tr>
+      <td>Settings</td>
+      <td>Your chosen language, whether the biometric lock is enabled, whether screenshot
+          protection is enabled, and whether you have completed the introduction.</td>
+      <td>Held in the application's private storage.</td>
+    </tr>
+  </table>
+  <p>That is the complete list. Sinope does not store your name, email address, phone number,
+  location, contacts, device identifiers or advertising identifiers.</p>
+</section>
+
+<section id="network">
+  <h2>Network access</h2>
+  <p><strong>Sinope does not request the <code>INTERNET</code> permission.</strong> Android
+  therefore prevents the application from opening any network connection whatsoever. This is not a
+  policy commitment that could be quietly reversed — it is enforced by the operating system, and
+  you can verify it yourself in the app's manifest.</p>
+  <p>The application contains no analytics, crash-reporting, advertising or tracking libraries.</p>
+</section>
+
+<section id="camera">
+  <h2>Camera</h2>
+  <p>Camera access is used for one purpose: reading the QR code your provider displays when you
+  enable two-factor authentication. The camera is active only while the scanning screen is open.</p>
+  <p>Frames are decoded on your device by a barcode library bundled inside the application. No
+  photograph or video is written to storage, and nothing is transmitted. Camera access is optional
+  — every account can be added by entering its details manually instead.</p>
+</section>
+
+<section id="biometrics">
+  <h2>Biometrics</h2>
+  <p>If you enable the optional app lock, authentication is carried out entirely by Android's own
+  biometric subsystem. Sinope receives a success or failure result and nothing more. It never
+  receives, processes or stores your fingerprint, facial geometry or any other biometric data.</p>
+</section>
+
+<section id="backups">
+  <h2>Backups you create</h2>
+  <p>Sinope can export your accounts to a <code>.sinope</code> file so that you can move them to
+  another device or retain a copy. When you do:</p>
+  <ul>
+    <li>You choose the password. It is converted into an encryption key using Argon2id, and the
+        contents are encrypted with AES-256-GCM.</li>
+    <li>You choose the destination, using Android's own file picker.</li>
+    <li>The password is never stored and cannot be recovered. If it is lost, the backup cannot be
+        opened by anyone, including us.</li>
+    <li>The file belongs to you. Sinope does not upload it and has no capability to do so.</li>
+  </ul>
+  <p>Once the file leaves the application, responsibility for it passes to you. If you place it in
+  a cloud storage service, that provider's privacy policy governs the copy held there.</p>
+</section>
+
+<section id="system-backup">
+  <h2>Android system backup</h2>
+  <p>Sinope's account database is explicitly excluded from Android's automatic cloud backup and
+  from device-to-device transfer. Your secrets are not copied off the device by the operating
+  system.</p>
+</section>
+
+<section id="sharing">
+  <h2>Sharing and disclosure</h2>
+  <p>Sinope does not share, sell, rent or disclose your information to anyone. No third party is
+  involved, because no information ever leaves your device. There is consequently nothing that
+  could be produced in response to a request from any party.</p>
+</section>
+
+<section id="permissions">
+  <h2>Permissions</h2>
+  <table>
+    <caption>Permissions requested</caption>
+    <tr><th>Permission</th><th>Purpose</th><th>Required</th></tr>
+    <tr><td><code>CAMERA</code></td><td>Scanning setup QR codes</td>
+        <td>No — manual entry works without it</td></tr>
+    <tr><td><code>USE_BIOMETRIC</code></td><td>The optional app lock</td>
+        <td>No — disabled by default</td></tr>
+  </table>
+  <p>Sinope requests no other permissions.</p>
+</section>
+
+<section id="children">
+  <h2>Children</h2>
+  <p>Sinope is a general-purpose security utility and is not directed at children. It collects no
+  personal information from any user, of any age.</p>
+</section>
+
+<section id="control">
+  <h2>Your control and deletion</h2>
+  <p>You may delete any individual account from within the app, or remove every account at once
+  from Settings. Uninstalling Sinope erases its entire storage area, including all stored secrets.
+  No copy remains elsewhere, because no copy was ever sent elsewhere.</p>
+</section>
+
+<section id="changes">
+  <h2>Changes to this policy</h2>
+  <p>If this policy changes, the revised version will be published at this address and the
+  effective date above will be updated. Material changes will also be noted in the app's release
+  notes.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Questions about this policy, or about privacy in Sinope, may be sent to
+  <a href="mailto:CONTACT_EMAIL_HERE">CONTACT_EMAIL_HERE</a>.</p>
+</section></main>
+
+<footer>
+  <span>Sinope — DEVELOPER_NAME_HERE</span>
+  <span>Effective 30 September 2026 · Version 1.0</span>
+</footer>
+
+</div>
+
+<script>
+/* Highlights the current section in the rail. No network, no dependencies. */
+(function () {
+  var sections = [].slice.call(document.querySelectorAll('main section'));
+  var links = {};
+  document.querySelectorAll('aside a').forEach(function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+  if (!sections.length) return;
+
+  function mark(id) {
+    Object.keys(links).forEach(function (k) {
+      links[k].classList.toggle('active', k === id);
+    });
+  }
+
+  function update() {
+    var line = window.innerHeight * 0.25, current = sections[0];
+    sections.forEach(function (s) {
+      if (s.getBoundingClientRect().top <= line) current = s;
+    });
+    /* Once the page bottoms out, the final sections can never reach the probe line,
+       so they would never light up. Snap to the last one instead. */
+    var atEnd = window.innerHeight + window.scrollY >=
+                document.documentElement.scrollHeight - 2;
+    mark(atEnd ? sections[sections.length - 1].id : current.id);
+  }
+
+  var queued = false;
+  function onScroll() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; update(); });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+})();
+</script>
+
+</body>
+</html>

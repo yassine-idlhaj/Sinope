@@ -1,6 +1,5 @@
-package com.example.sinope.presentation.language
+package com.example.sinope.presentation.settings.language
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -44,7 +43,7 @@ import com.example.sinope.core.common.SectionLabel
 import com.example.sinope.core.utils.SinopeColors
 import com.example.sinope.presentation.model.AppLanguages
 import com.example.sinope.presentation.model.LanguageOption
-import com.example.sinope.presentation.settings.viewModel.LanguageViewModel
+import com.example.sinope.presentation.settings.language.viewModel.LanguageViewModel
 
 /**
  * One selectable language. [nativeName] is the language's own endonym, shown under the English
@@ -71,8 +70,6 @@ fun LanguageScreen(
 
     val languageViewModel by viewModel.language.collectAsStateWithLifecycle()
     val context = LocalContext.current
-    Log.d("TEST",languageViewModel.toString())
-
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -153,7 +150,7 @@ private fun LanguageRow(
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                text = language.nativeName,
+                text = language.subtitleRes?.let { stringResource(it) } ?: language.nativeName,
                 color = SinopeColors.TextSecondary,
                 fontSize = 10.sp,
             )

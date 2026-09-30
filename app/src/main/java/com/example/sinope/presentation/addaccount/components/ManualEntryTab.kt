@@ -29,18 +29,63 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.input.KeyboardType
 import com.example.sinope.core.common.RowDivider
+import com.example.sinope.core.common.VaultTextField
 import com.example.sinope.core.utils.SinopeColors
 import com.example.sinope.R
 import androidx.compose.ui.res.stringResource
 
+/**
+ * Manual "enter a secret by hand" form. Stateless: every value comes in as a parameter and every
+ * change goes out as a callback, so the ViewModel owns the form state.
+ */
 @Composable
-fun ManualEntryTab(onSave: () -> Unit) {
+fun ManualEntryTab(
+    issuer: String,
+    accountName: String,
+    secret: String,
+    digits: Int,
+    period: Int,
+    errorMessage: String?,
+    onIssuerChange: (String) -> Unit,
+    onAccountNameChange: (String) -> Unit,
+    onSecretChange: (String) -> Unit,
+    onDigitsChange: (Int) -> Unit,
+    onPeriodChange: (Int) -> Unit,
+    onSave: () -> Unit,
+) {
     Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
         InputLabel(stringResource(R.string.account_info))
-        FakeInput(Icons.Outlined.Shield, "GitHub")
-        FakeInput(Icons.Outlined.Person, "dev@example.com")
-        FakeInput(Icons.Outlined.VpnKey, "JBSWY3DPEHPK3PXP")
+        VaultTextField(
+            value = issuer,
+            onValueChange = onIssuerChange,
+            placeholder = stringResource(R.string.hint_issuer),
+            icon = Icons.Outlined.Shield,
+        )
+        VaultTextField(
+            value = accountName,
+            onValueChange = onAccountNameChange,
+            placeholder = stringResource(R.string.hint_account_name),
+            icon = Icons.Outlined.Person,
+        )
+        VaultTextField(
+            value = secret,
+            onValueChange = onSecretChange,
+            placeholder = stringResource(R.string.hint_secret),
+            icon = Icons.Outlined.VpnKey,
+            // Password keyboard: no autocorrect or suggestions on a Base32 key.
+            keyboardType = KeyboardType.Password,
+        )
+
+        errorMessage?.let {
+            Text(
+                text = it,
+                color = SinopeColors.Danger,
+                fontSize = 11.sp,
+                modifier = Modifier.padding(bottom = 4.dp),
+            )
+        }
 
         Spacer(Modifier.height(14.dp))
         InputLabel(stringResource(R.string.advanced))
@@ -52,8 +97,20 @@ fun ManualEntryTab(onSave: () -> Unit) {
                 .background(SinopeColors.InputBg)
                 .border(1.dp, SinopeColors.Border, RoundedCornerShape(16.dp)),
         ) {
-            SegmentedRow(stringResource(R.string.digits), listOf("6", "8"), selectedIndex = 0, showDivider = true)
-            SegmentedRow(stringResource(R.string.period), listOf("30s", "60s"), selectedIndex = 0, showDivider = false)
+            SegmentedRow(
+                label = stringResource(R.string.digits),
+                options = listOf("6", "8"),
+                selectedIndex = if (digits == 8) 1 else 0,
+                onSelect = { onDigitsChange(if (it == 1) 8 else 6) },
+                showDivider = true,
+            )
+            SegmentedRow(
+                label = stringResource(R.string.period),
+                options = listOf("30s", "60s"),
+                selectedIndex = if (period == 60) 1 else 0,
+                onSelect = { onPeriodChange(if (it == 1) 60 else 30) },
+                showDivider = false,
+            )
         }
 
         Row(
@@ -97,33 +154,11 @@ private fun InputLabel(text: String) {
 }
 
 @Composable
-private fun FakeInput(icon: ImageVector, value: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 10.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(SinopeColors.InputBg)
-            .border(1.dp, SinopeColors.Border, RoundedCornerShape(12.dp))
-            .padding(horizontal = 14.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        Icon(icon, null, tint = SinopeColors.TextMuted, modifier = Modifier.size(14.dp))
-        Text(
-            value,
-            color = SinopeColors.TextPrimary,
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Medium
-        )
-    }
-}
-
-@Composable
 private fun SegmentedRow(
     label: String,
     options: List<String>,
     selectedIndex: Int,
+    onSelect: (Int) -> Unit,
     showDivider: Boolean
 ) {
     Row(
@@ -151,6 +186,7 @@ private fun SegmentedRow(
                     modifier = Modifier
                         .clip(RoundedCornerShape(6.dp))
                         .background(if (active) SinopeColors.Cyan else Color.Transparent)
+                        .clickable { onSelect(index) }
                         .padding(horizontal = 10.dp, vertical = 4.dp),
                 ) {
                     Text(

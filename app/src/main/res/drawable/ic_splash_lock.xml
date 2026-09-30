@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Splash icon: the launcher mark restated for the 288dp splash canvas.
+
+    The Android 12+ splash shows art inside the inner 192dp (2/3) of a 288dp square, so the
+    gradient disc is exactly that 192dp circle. The lock itself is authored in the launcher
+    icon's 108 viewport and scaled by a group transform rather than being redrawn, so the two
+    marks can never drift apart — edit ic_launcher_foreground.xml and mirror the paths here.
+
+    Scale 2.67 makes the mark fill the disc in the same proportion the launcher mark fills its
+    mask, so the splash and the home-screen icon read as the same size.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="288"
+    android:viewportHeight="288"
+    tools:ignore="VectorRaster">   <!-- 288dp is the size the Android 12+ splash spec requires, not a choice. -->
+    <path android:pathData="M144,48a96,96 0 1,0 0,192a96,96 0 1,0 0,-192Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear"
+                android:startX="48" android:startY="48"
+                android:endX="240" android:endY="240">
+                <item android:offset="0" android:color="#FF00D4FF" />
+                <item android:offset="0.5" android:color="#FF7C3AED" />
+                <item android:offset="1" android:color="#FFE040FB" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <group
+        android:pivotX="54" android:pivotY="52.75"
+        android:scaleX="2.67" android:scaleY="2.67"
+        android:translateX="90" android:translateY="91.25">
+    <path
+        android:pathData="M43,49V40A11,11 0,0 1,65,40V49"
+        android:strokeColor="#FFF0F0FF"
+        android:strokeWidth="7"
+        android:strokeLineCap="butt"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M54,62L54,44A18,18 0,1 0,69.59,53.00Z"
+        android:fillColor="#FFF0F0FF" />
+    <path
+        android:pathData="M54,62L54,44A18,18 0,0 1,69.59,53.00Z"
+        android:fillColor="#FFF0F0FF"
+        android:fillAlpha="0.3" />
+    </group>
+</vector>

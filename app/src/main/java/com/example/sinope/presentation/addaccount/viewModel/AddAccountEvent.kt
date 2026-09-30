@@ -13,6 +13,10 @@ sealed interface AddAccountEvent {
         val value: String
     ) : AddAccountEvent
 
+    data class DigitsChanged(val value: Int) : AddAccountEvent
+
+    data class PeriodChanged(val value: Int) : AddAccountEvent
+
     data object SaveAccount : AddAccountEvent
 
 }

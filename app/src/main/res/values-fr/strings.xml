@@ -15,6 +15,13 @@
     <string name="seconds_left">%1$d s</string>
     <string name="totp_code_clip_label">Code TOTP</string>
 
+    <!-- Search -->
+    <string name="search">Rechercher</string>
+    <string name="search_accounts">Rechercher un compte…</string>
+    <string name="clear_search">Effacer la recherche</string>
+    <string name="search_no_results_title">Aucun résultat</string>
+    <string name="search_no_results_body">Rien dans votre coffre ne correspond à « %1$s ».</string>
+
     <!-- Settings -->
     <string name="settings">Paramètres</string>
     <string name="section_language">LANGUE</string>
@@ -37,8 +44,11 @@
     <string name="stat_security">Sécurité</string>
 
     <!-- Language picker -->
+    <string name="language_subtitle">Choisir la langue de l\'application</string>
     <string name="app_language">LANGUE DE L\'APPLICATION</string>
     <string name="language_description">Sinope suivra votre choix au prochain lancement. Certaines boîtes de dialogue système peuvent conserver la langue de votre appareil.</string>
+    <string name="language_system">Langue du système</string>
+    <string name="language_system_subtitle">Suivre la langue de l\'appareil</string>
     <string name="language_english">Anglais</string>
     <string name="language_arabic">Arabe</string>
     <string name="language_french">Français</string>
@@ -71,7 +81,7 @@
     <string name="advanced">AVANCÉ</string>
     <string name="digits">Chiffres</string>
     <string name="period">Période</string>
-    <string name="add_to_vault">Ajouter au coffre</string>
+    <string name="add_to_vault">Enregistrer le compte</string>
     <string name="account_already_exists">Ce compte existe déjà</string>
 
     <!-- QR scanner -->
@@ -121,4 +131,87 @@
     <string name="couldnt_delete_account">Impossible de supprimer le compte</string>
     <string name="dismiss">Fermer</string>
 
+    <!-- Backup, import and manual entry -->
+    <string name="export_dialog_title">Chiffrer la sauvegarde</string>
+    <string name="export_dialog_body">Choisissez un mot de passe pour cette sauvegarde. Vous en aurez besoin pour l\'importer sur n\'importe quel appareil. Sinope ne peut pas le récupérer si vous l\'oubliez.</string>
+    <string name="backup_password">Mot de passe de sauvegarde</string>
+    <string name="backup_password_confirm">Confirmer le mot de passe</string>
+    <string name="backup_password_too_short">Utilisez au moins %1$d caractères</string>
+    <string name="backup_password_mismatch">Les mots de passe ne correspondent pas</string>
+    <string name="export_continue">Continuer</string>
+    <string name="export_no_accounts">Aucun compte à exporter</string>
+    <string name="export_failed">Échec de l\'exportation. Veuillez réessayer.</string>
+    <string name="exporting">Chiffrement de la sauvegarde…</string>
+    <string name="import_dialog_title">Déverrouiller la sauvegarde</string>
+    <string name="import_dialog_body">Saisissez le mot de passe utilisé lors de la création de cette sauvegarde.</string>
+    <string name="import_open">Ouvrir</string>
+    <string name="import_wrong_password">Mot de passe incorrect, ou fichier modifié</string>
+    <string name="import_invalid_file">Ce fichier n\'est pas une sauvegarde Sinope</string>
+    <string name="import_failed">Échec de l\'importation. Veuillez réessayer.</string>
+    <string name="import_pick_another_file">Choisir un autre fichier</string>
+    <string name="import_waiting_for_file">Choisissez un fichier de sauvegarde…</string>
+    <string name="import_decrypting">Déchiffrement de la sauvegarde…</string>
+    <string name="import_saving">Enregistrement des comptes…</string>
+    <string name="import_select_all">Tout sélectionner / désélectionner</string>
+    <string name="import_duplicate_badge">DOUBLON</string>
+    <string name="done">Terminé</string>
+    <string name="hint_secret">Clé secrète</string>
+    <string name="manual_error_missing_name">Saisissez un émetteur ou un nom de compte</string>
+    <string name="manual_error_missing_secret">Saisissez la clé secrète</string>
+    <string name="manual_error_invalid_secret">Cette clé secrète n\'est pas valide</string>
+    <string name="qr_invalid_code">Ce QR code n\'est pas un code d\'authentification</string>
+    <string name="account_save_failed">Impossible d\'enregistrer le compte</string>
+
+    <!-- Counted messages: plural forms per language -->
+    <plurals name="export_success">
+        <item quantity="one">%1$d compte exporté</item>
+        <item quantity="many">%1$d de comptes exportés</item>
+        <item quantity="other">%1$d comptes exportés</item>
+    </plurals>
+    <plurals name="import_found">
+        <item quantity="one">%1$d compte dans cette sauvegarde</item>
+        <item quantity="many">%1$d de comptes dans cette sauvegarde</item>
+        <item quantity="other">%1$d comptes dans cette sauvegarde</item>
+    </plurals>
+    <plurals name="import_duplicates_found">
+        <item quantity="one">%1$d déjà dans Sinope, décoché ci-dessous</item>
+        <item quantity="many">%1$d de comptes déjà dans Sinope, décochés ci-dessous</item>
+        <item quantity="other">%1$d déjà dans Sinope, décochés ci-dessous</item>
+    </plurals>
+    <plurals name="import_action">
+        <item quantity="one">Importer %1$d compte</item>
+        <item quantity="many">Importer %1$d de comptes</item>
+        <item quantity="other">Importer %1$d comptes</item>
+    </plurals>
+    <plurals name="import_success">
+        <item quantity="one">%1$d compte importé</item>
+        <item quantity="many">%1$d de comptes importés</item>
+        <item quantity="other">%1$d comptes importés</item>
+    </plurals>
+
+    <!-- Delete all accounts -->
+    <string name="delete_all_dialog_body">Cela supprime tous les comptes et leurs secrets de cet appareil. Action irréversible.</string>
+    <string name="delete_all_dialog_backup_hint">Exportez d\'abord une sauvegarde si vous pourriez avoir besoin de ces codes.</string>
+    <string name="delete_all_confirm">Tout supprimer</string>
+    <string name="delete_all_in_progress">Suppression…</string>
+    <string name="delete_all_nothing_to_delete">Aucun compte à supprimer</string>
+    <string name="delete_all_success">Tous les comptes ont été supprimés</string>
+    <string name="delete_all_failed">Impossible de supprimer les comptes</string>
+    <plurals name="delete_all_dialog_title">
+        <item quantity="one">Supprimer %1$d compte ?</item>
+        <item quantity="many">Supprimer les %1$d comptes ?</item>
+        <item quantity="other">Supprimer les %1$d comptes ?</item>
+    </plurals>
+
+    <!-- App lock -->
+    <string name="locked_title">Sinope est verrouillé</string>
+    <string name="locked_subtitle">Authentifiez-vous pour ouvrir votre coffre.</string>
+    <string name="unlock">Déverrouiller</string>
+    <string name="biometric_prompt_title">Déverrouiller Sinope</string>
+    <string name="biometric_prompt_subtitle">Authentifiez-vous pour accéder à vos comptes</string>
+    <string name="biometric_error_no_hardware">Cet appareil ne dispose pas de matériel biométrique.</string>
+    <string name="biometric_error_unavailable">Le matériel biométrique est momentanément indisponible.</string>
+    <string name="biometric_error_none_enrolled">Aucune donnée biométrique n\'est enregistrée sur cet appareil.</string>
+    <string name="biometric_error_generic">L\'authentification biométrique est indisponible.</string>
+    <string name="biometric_error_cancelled">Authentification annulée.</string>
 </resources>

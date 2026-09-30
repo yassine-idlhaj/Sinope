@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -25,8 +26,9 @@ android {
 
     buildTypes {
         release {
+            // R8: strip unused code and resources. Cuts the dex files by an order of magnitude.
             optimization {
-                enable = false
+                enable = true
             }
         }
     }
@@ -95,6 +97,11 @@ dependencies {
     implementation(libs.kotlin.onetimepassword)
 
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.biometric)
+
+    implementation(libs.kotlinx.serialization.json)
+    // Argon2id password hashing for .sinope backups (lightweight API only, not registered as a JCA provider)
+    implementation(libs.bouncycastle.bcprov)
 
 
 }

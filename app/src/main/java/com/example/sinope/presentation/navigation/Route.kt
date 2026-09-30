@@ -20,6 +20,7 @@ sealed class Route(
     data object AddAccountScreen : Route("add_account_screen")
     data object SettingsScreen : Route("settings")
     data object LanguageScreen: Route("language")
+    data object ImportAccountsScreen : Route("import_accounts")
 
     data object EditAccountScreen : Route(
         route = "edit_account_screen/{$ACCOUNT_ID_ARG}",

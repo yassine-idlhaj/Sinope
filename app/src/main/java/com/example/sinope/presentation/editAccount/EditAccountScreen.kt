@@ -59,7 +59,7 @@ import com.example.sinope.presentation.editAccount.viewModel.EditAccountState
 import com.example.sinope.presentation.editAccount.viewModel.EditAccountUiEvent
 import com.example.sinope.presentation.editAccount.viewModel.EditAccountViewModel
 import com.example.sinope.R
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 
 /**
@@ -77,7 +77,7 @@ fun EditAccountScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
-    val context = LocalContext.current
+    val resources = LocalResources.current
     val changesSavedMessage = stringResource(R.string.changes_saved)
 
     LaunchedEffect(Unit) {
@@ -85,7 +85,7 @@ fun EditAccountScreen(
             when (event) {
                 is EditAccountUiEvent.ShowMessage ->
                     snackbarHostState.showSinopeSnackbar(
-                        context.getString(event.messageRes),
+                        resources.getString(event.messageRes),
                         event.tone,
                     )
 

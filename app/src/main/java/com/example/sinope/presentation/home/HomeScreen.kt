@@ -1,6 +1,12 @@
 package com.example.sinope.presentation.home
 
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +41,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,6 +56,8 @@ import com.example.sinope.core.common.showSinopeSnackbar
 import com.example.sinope.core.utils.SinopeColors
 import com.example.sinope.presentation.editAccount.components.DeleteAccountDialog
 import com.example.sinope.presentation.home.components.AccountCard
+import com.example.sinope.presentation.home.components.AccountSearchBar
+import com.example.sinope.presentation.home.components.SearchEmptyState
 import com.example.sinope.presentation.home.components.QuickActionItem
 import com.example.sinope.presentation.home.components.SinopeHeader
 import com.example.sinope.presentation.home.viewModel.HomeEvent
@@ -61,8 +70,8 @@ import androidx.compose.ui.res.stringResource
 
 /**
  * Home / "VAULT" screen: gradient title, Favorites and All Accounts sections, and per-account
- * cards with a live countdown. UI only — the shared countdown is local state so previews feel
- * live; a real screen would source codes and remaining seconds from a ViewModel.
+ * cards with a live countdown. The header's magnifier reveals a search field that filters both
+ * sections by issuer or account name; closing it restores the full vault.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -81,10 +90,20 @@ fun HomeScreen(
         mutableStateOf<AccountUi?>(null)
     }
     val sheetState = rememberModalBottomSheetState()
+    val keyboardController = LocalSoftwareKeyboardController.current
     val codeCopiedMessage = stringResource(R.string.code_copied)
 
+    // Already narrowed to the search query by the view-model.
     val favorites = state.accounts.filter { it.favorite }
     val others = state.accounts.filterNot { it.favorite }
+
+    val closeSearch = {
+        keyboardController?.hide()
+        viewModel.onEvent(HomeEvent.SearchClosed)
+    }
+
+    // While searching, the system back gesture should drop the query, not leave the vault.
+    BackHandler(enabled = state.isSearchActive, onBack = closeSearch)
 
 
     Box(
@@ -92,32 +111,88 @@ fun HomeScreen(
             .fillMaxSize()
             .background(SinopeColors.Background),
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(bottom = 24.dp),
-        ) {
-            item {
-                SinopeHeader(
-                    accountCount = state.accounts.size, onOpenSettings = onOpenSettings
+        Column(modifier = Modifier.fillMaxSize()) {
+
+            AnimatedVisibility(
+                visible = state.isSearchActive,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut(),
+            ) {
+                AccountSearchBar(
+                    query = state.searchQuery,
+                    onQueryChange = { viewModel.onEvent(HomeEvent.SearchQueryChanged(it)) },
+                    onClear = { viewModel.onEvent(HomeEvent.SearchQueryChanged("")) },
                 )
             }
 
-            if (favorites.isNotEmpty()) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                contentPadding = PaddingValues(bottom = 24.dp),
+            ) {
                 item {
-                    SectionLabel(
-                        text = stringResource(R.string.favorites_section),
-                        color = SinopeColors.Amber,
-                        leading = {
-                            Icon(
-                                Icons.Filled.Star,
-                                null,
-                                tint = SinopeColors.Amber,
-                                modifier = Modifier.size(11.dp)
-                            )
+                    SinopeHeader(
+                        accountCount = state.totalAccounts,
+                        onOpenSettings = onOpenSettings,
+                        searchActive = state.isSearchActive,
+                        onToggleSearch = {
+                            if (state.isSearchActive) {
+                                closeSearch()
+                            } else {
+                                viewModel.onEvent(HomeEvent.SearchOpened)
+                            }
                         },
                     )
                 }
-                items(items = favorites, key = { it.id }) {account ->
+
+                if (favorites.isNotEmpty()) {
+                    item {
+                        SectionLabel(
+                            text = stringResource(R.string.favorites_section),
+                            color = SinopeColors.Amber,
+                            leading = {
+                                Icon(
+                                    Icons.Filled.Star,
+                                    null,
+                                    tint = SinopeColors.Amber,
+                                    modifier = Modifier.size(11.dp)
+                                )
+                            },
+                        )
+                    }
+                    items(items = favorites, key = { it.id }) {account ->
+                        accountCard(
+                            account = account,
+                            scope = scope,
+                            snackbarHostState = snackbarHostState,
+                            viewModel = viewModel,
+                            onLongClick = { currentAccount ->
+                                selectedAccount = currentAccount
+                            },
+                            onEditAccount = onEditAccount
+                        )
+                    }
+                }
+
+                // A search that only hits favorites shouldn't leave an empty "ALL ACCOUNTS" heading.
+                if (others.isNotEmpty() || state.searchQuery.isBlank()) {
+                    item {
+                        SectionLabel(
+                            text = stringResource(R.string.all_accounts_section),
+                            color = SinopeColors.Cyan,
+                            leading = {
+                                Icon(
+                                    Icons.Outlined.Lock,
+                                    null,
+                                    tint = SinopeColors.Cyan,
+                                    modifier = Modifier.size(11.dp)
+                                )
+                            },
+                        )
+                    }
+                }
+                items(others, key = { it.id }) { account ->
                     accountCard(
                         account = account,
                         scope = scope,
@@ -129,44 +204,23 @@ fun HomeScreen(
                         onEditAccount = onEditAccount
                     )
                 }
-            }
 
-            item {
-                SectionLabel(
-                    text = stringResource(R.string.all_accounts_section),
-                    color = SinopeColors.Cyan,
-                    leading = {
-                        Icon(
-                            Icons.Outlined.Lock,
-                            null,
-                            tint = SinopeColors.Cyan,
-                            modifier = Modifier.size(11.dp)
-                        )
-                    },
-                )
-            }
-            items(others, key = { it.id }) { account ->
-                accountCard(
-                    account = account,
-                    scope = scope,
-                    snackbarHostState = snackbarHostState,
-                    viewModel = viewModel,
-                    onLongClick = { currentAccount ->
-                        selectedAccount = currentAccount
-                    },
-                    onEditAccount = onEditAccount
-                )
-            }
+                if (state.hasNoSearchResults) {
+                    item {
+                        SearchEmptyState(query = state.searchQuery.trim())
+                    }
+                }
 
-            item {
-                SinopeButton(
-                    onClick = onAddAccount,
-                    text = stringResource(R.string.add_account),
-                    padHor = 13.dp,
-                    padVer = 12.dp,
-                    contentPadVer = 13.dp,
-                    icon = Icons.Outlined.Add
-                )
+                item {
+                    SinopeButton(
+                        onClick = onAddAccount,
+                        text = stringResource(R.string.add_account),
+                        padHor = 13.dp,
+                        padVer = 12.dp,
+                        contentPadVer = 13.dp,
+                        icon = Icons.Outlined.Add
+                    )
+                }
             }
         }
 
@@ -256,8 +310,15 @@ fun HomeScreen(
 
 
         if (state.showDeleteDialog) {
+            // The sheet already told us which account this is, so name it rather than saying
+            // "this account" over a dialog the user opened from a specific row.
+            val pendingIssuer = state.accounts
+                .firstOrNull { it.id == state.selectedAccountId?.toString() }
+                ?.issuer
+                ?.takeIf { it.isNotBlank() }
+
             DeleteAccountDialog(
-                issuer = stringResource(R.string.this_account),
+                issuer = pendingIssuer ?: stringResource(R.string.this_account),
                 onConfirm = { viewModel.onEvent(HomeEvent.DeleteConfirmed) },
                 onDismiss = { viewModel.onEvent(HomeEvent.DeleteDismissed) },
             )

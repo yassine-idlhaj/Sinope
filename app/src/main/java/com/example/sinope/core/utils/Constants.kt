@@ -7,4 +7,8 @@ object Constants {
 
     const val PERIOD_SECONDS = 30;
     const val LANGUAGE = "language"
+
+    const val BIOMETRIC_LOCK = "biometric_lock"
+
+    const val SCREENSHOT_PROTECTION = "screenshot_protection"
 }

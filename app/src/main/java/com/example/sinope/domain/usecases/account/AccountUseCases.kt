@@ -6,8 +6,10 @@ data class AccountUseCases(
     val insertAccount: InsertAccount,
     val updateAccount: UpdateAccount,
     val deleteAccount: DeleteAccount,
+    val deleteAllAccounts: DeleteAllAccounts,
     val parseQrCode: ParseQrCode,
     val generateTotpCode: GenerateTotpCode,
     val toggleFavorite: ToggleFavorite,
-    val isAccountExists: IsAccountExists
+    val isAccountExists: IsAccountExists,
+    val validateManualEntry: ValidateManualEntry
 )

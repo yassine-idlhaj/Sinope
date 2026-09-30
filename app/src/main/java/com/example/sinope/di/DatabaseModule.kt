@@ -6,9 +6,11 @@ import com.example.sinope.data.account.dao.AccountDao
 import com.example.sinope.data.account.repository.AccountRepositoryImpl
 import com.example.sinope.data.database.AppDatabase
 import com.example.sinope.data.database.MIGRATION_1_2
+import com.example.sinope.data.security.CryptoManager
 import com.example.sinope.domain.repository.account.IAccountRepository
 import com.example.sinope.domain.usecases.account.AccountUseCases
 import com.example.sinope.domain.usecases.account.DeleteAccount
+import com.example.sinope.domain.usecases.account.DeleteAllAccounts
 import com.example.sinope.domain.usecases.account.GenerateTotpCode
 import com.example.sinope.domain.usecases.account.GetAccount
 import com.example.sinope.domain.usecases.account.GetAccounts
@@ -17,6 +19,7 @@ import com.example.sinope.domain.usecases.account.IsAccountExists
 import com.example.sinope.domain.usecases.account.ParseQrCode
 import com.example.sinope.domain.usecases.account.ToggleFavorite
 import com.example.sinope.domain.usecases.account.UpdateAccount
+import com.example.sinope.domain.usecases.account.ValidateManualEntry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,8 +52,12 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideAccountRepository(accountDao: AccountDao): IAccountRepository =
-        AccountRepositoryImpl(accountDao)
+    fun provideCryptoManager(): CryptoManager = CryptoManager()
+
+    @Provides
+    @Singleton
+    fun provideAccountRepository(accountDao: AccountDao, cryptoManager: CryptoManager): IAccountRepository =
+        AccountRepositoryImpl(accountDao, cryptoManager)
 
 
     @Provides
@@ -62,9 +69,11 @@ object DatabaseModule {
         insertAccount = InsertAccount(repository),
         updateAccount = UpdateAccount(repository),
         deleteAccount = DeleteAccount(repository),
+        deleteAllAccounts = DeleteAllAccounts(repository),
         parseQrCode = ParseQrCode(),
         generateTotpCode = GenerateTotpCode(),
         toggleFavorite = ToggleFavorite(repository),
-        isAccountExists = IsAccountExists(repository)
+        isAccountExists = IsAccountExists(repository),
+        validateManualEntry = ValidateManualEntry()
     )
 }

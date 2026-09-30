@@ -15,6 +15,13 @@
     <string name="seconds_left">%1$d ث</string>
     <string name="totp_code_clip_label">رمز TOTP</string>
 
+    <!-- Search -->
+    <string name="search">بحث</string>
+    <string name="search_accounts">ابحث في الحسابات…</string>
+    <string name="clear_search">مسح البحث</string>
+    <string name="search_no_results_title">لا توجد نتائج</string>
+    <string name="search_no_results_body">لا يوجد في خزنتك ما يطابق ”%1$s“.</string>
+
     <!-- Settings -->
     <string name="settings">الإعدادات</string>
     <string name="section_language">اللغة</string>
@@ -37,8 +44,11 @@
     <string name="stat_security">الأمان</string>
 
     <!-- Language picker -->
+    <string name="language_subtitle">اختر لغة التطبيق</string>
     <string name="app_language">لغة التطبيق</string>
     <string name="language_description">يتبع Sinope اختيارك عند التشغيل التالي. قد تظل بعض مربعات حوار النظام تستخدم لغة جهازك.</string>
+    <string name="language_system">لغة النظام</string>
+    <string name="language_system_subtitle">اتباع لغة الجهاز</string>
     <string name="language_english">الإنجليزية</string>
     <string name="language_arabic">العربية</string>
     <string name="language_french">الفرنسية</string>
@@ -71,7 +81,7 @@
     <string name="advanced">إعدادات متقدمة</string>
     <string name="digits">عدد الأرقام</string>
     <string name="period">المدة</string>
-    <string name="add_to_vault">إضافة إلى الخزنة</string>
+    <string name="add_to_vault">حفظ الحساب</string>
     <string name="account_already_exists">الحساب موجود بالفعل</string>
 
     <!-- QR scanner -->
@@ -121,4 +131,105 @@
     <string name="couldnt_delete_account">تعذّر حذف الحساب</string>
     <string name="dismiss">إغلاق</string>
 
+    <!-- Backup, import and manual entry -->
+    <string name="export_dialog_title">تشفير النسخة الاحتياطية</string>
+    <string name="export_dialog_body">اختر كلمة مرور لهذه النسخة الاحتياطية. ستحتاج إليها لاستيرادها على أي جهاز. لا يمكن لـ Sinope استعادتها إذا نسيتها.</string>
+    <string name="backup_password">كلمة مرور النسخة الاحتياطية</string>
+    <string name="backup_password_confirm">تأكيد كلمة المرور</string>
+    <string name="backup_password_too_short">استخدم %1$d أحرف على الأقل</string>
+    <string name="backup_password_mismatch">كلمتا المرور غير متطابقتين</string>
+    <string name="export_continue">متابعة</string>
+    <string name="export_no_accounts">لا توجد حسابات للتصدير</string>
+    <string name="export_failed">فشل التصدير. حاول مرة أخرى.</string>
+    <string name="exporting">جارٍ تشفير النسخة الاحتياطية…</string>
+    <string name="import_dialog_title">فتح النسخة الاحتياطية</string>
+    <string name="import_dialog_body">أدخل كلمة المرور المستخدمة عند إنشاء هذه النسخة الاحتياطية.</string>
+    <string name="import_open">فتح</string>
+    <string name="import_wrong_password">كلمة المرور غير صحيحة أو تم تعديل الملف</string>
+    <string name="import_invalid_file">هذا الملف ليس نسخة احتياطية من Sinope</string>
+    <string name="import_failed">فشل الاستيراد. حاول مرة أخرى.</string>
+    <string name="import_pick_another_file">اختر ملفًا آخر</string>
+    <string name="import_waiting_for_file">اختر ملف نسخة احتياطية…</string>
+    <string name="import_decrypting">جارٍ فك تشفير النسخة الاحتياطية…</string>
+    <string name="import_saving">جارٍ حفظ الحسابات…</string>
+    <string name="import_select_all">تحديد / إلغاء تحديد الكل</string>
+    <string name="import_duplicate_badge">مكرر</string>
+    <string name="done">تم</string>
+    <string name="hint_secret">المفتاح السري</string>
+    <string name="manual_error_missing_name">أدخل جهة الإصدار أو اسم الحساب</string>
+    <string name="manual_error_missing_secret">أدخل المفتاح السري</string>
+    <string name="manual_error_invalid_secret">هذا المفتاح السري غير صالح</string>
+    <string name="qr_invalid_code">رمز QR هذا ليس رمز مصادقة</string>
+    <string name="account_save_failed">تعذّر حفظ الحساب</string>
+
+    <!-- Counted messages: plural forms per language -->
+    <plurals name="export_success">
+        <item quantity="zero">لم يتم تصدير أي حساب</item>
+        <item quantity="one">تم تصدير حساب واحد</item>
+        <item quantity="two">تم تصدير حسابين</item>
+        <item quantity="few">تم تصدير %1$d حسابات</item>
+        <item quantity="many">تم تصدير %1$d حسابًا</item>
+        <item quantity="other">تم تصدير %1$d حساب</item>
+    </plurals>
+    <plurals name="import_found">
+        <item quantity="zero">لا توجد حسابات في هذه النسخة الاحتياطية</item>
+        <item quantity="one">حساب واحد في هذه النسخة الاحتياطية</item>
+        <item quantity="two">حسابان في هذه النسخة الاحتياطية</item>
+        <item quantity="few">%1$d حسابات في هذه النسخة الاحتياطية</item>
+        <item quantity="many">%1$d حسابًا في هذه النسخة الاحتياطية</item>
+        <item quantity="other">%1$d حساب في هذه النسخة الاحتياطية</item>
+    </plurals>
+    <plurals name="import_duplicates_found">
+        <item quantity="zero">لا توجد حسابات مكررة</item>
+        <item quantity="one">حساب واحد موجود بالفعل في Sinope، غير محدد أدناه</item>
+        <item quantity="two">حسابان موجودان بالفعل في Sinope، غير محددين أدناه</item>
+        <item quantity="few">%1$d حسابات موجودة بالفعل في Sinope، غير محددة أدناه</item>
+        <item quantity="many">%1$d حسابًا موجودة بالفعل في Sinope، غير محددة أدناه</item>
+        <item quantity="other">%1$d حساب موجود بالفعل في Sinope، غير محدد أدناه</item>
+    </plurals>
+    <plurals name="import_action">
+        <item quantity="zero">لا توجد حسابات للاستيراد</item>
+        <item quantity="one">استيراد حساب واحد</item>
+        <item quantity="two">استيراد حسابين</item>
+        <item quantity="few">استيراد %1$d حسابات</item>
+        <item quantity="many">استيراد %1$d حسابًا</item>
+        <item quantity="other">استيراد %1$d حساب</item>
+    </plurals>
+    <plurals name="import_success">
+        <item quantity="zero">لم يتم استيراد أي حساب</item>
+        <item quantity="one">تم استيراد حساب واحد</item>
+        <item quantity="two">تم استيراد حسابين</item>
+        <item quantity="few">تم استيراد %1$d حسابات</item>
+        <item quantity="many">تم استيراد %1$d حسابًا</item>
+        <item quantity="other">تم استيراد %1$d حساب</item>
+    </plurals>
+
+    <!-- Delete all accounts -->
+    <string name="delete_all_dialog_body">يزيل هذا كل حساب وسرّه من هذا الجهاز. لا يمكن التراجع عن ذلك.</string>
+    <string name="delete_all_dialog_backup_hint">صدّر نسخة احتياطية أولاً إذا كنت قد تحتاج هذه الرموز مرة أخرى.</string>
+    <string name="delete_all_confirm">حذف كل شيء</string>
+    <string name="delete_all_in_progress">جارٍ الحذف…</string>
+    <string name="delete_all_nothing_to_delete">لا توجد حسابات للحذف</string>
+    <string name="delete_all_success">تم حذف جميع الحسابات</string>
+    <string name="delete_all_failed">تعذّر حذف الحسابات</string>
+    <plurals name="delete_all_dialog_title">
+        <item quantity="zero">لا توجد حسابات للحذف</item>
+        <item quantity="one">حذف حسابك الوحيد؟</item>
+        <item quantity="two">حذف الحسابين؟</item>
+        <item quantity="few">حذف كل الحسابات الـ %1$d؟</item>
+        <item quantity="many">حذف كل الحسابات الـ %1$d؟</item>
+        <item quantity="other">حذف كل الحسابات الـ %1$d؟</item>
+    </plurals>
+
+    <!-- App lock -->
+    <string name="locked_title">سينوب مقفل</string>
+    <string name="locked_subtitle">تحقّق من هويتك لفتح خزنتك.</string>
+    <string name="unlock">فتح</string>
+    <string name="biometric_prompt_title">فتح سينوب</string>
+    <string name="biometric_prompt_subtitle">تحقّق من هويتك للوصول إلى حساباتك</string>
+    <string name="biometric_error_no_hardware">لا يحتوي هذا الجهاز على مستشعر حيوي.</string>
+    <string name="biometric_error_unavailable">المستشعر الحيوي غير متاح حاليًا.</string>
+    <string name="biometric_error_none_enrolled">لم يتم تسجيل أي بصمة على هذا الجهاز.</string>
+    <string name="biometric_error_generic">المصادقة الحيوية غير متاحة.</string>
+    <string name="biometric_error_cancelled">تم إلغاء المصادقة.</string>
 </resources>

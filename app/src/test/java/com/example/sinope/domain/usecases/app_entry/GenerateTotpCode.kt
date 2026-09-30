@@ -16,6 +16,9 @@ class GenerateTotpCodeTest {
             algorithm = "SHA1",
             digits = 6,
             period = 30,
+            emoji = "🔐",
+            color = 0L,
+            favorite = false,
         )
 
         val useCase = GenerateTotpCode()

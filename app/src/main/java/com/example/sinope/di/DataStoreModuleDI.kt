@@ -6,9 +6,15 @@ import com.example.sinope.domain.repository.app_manager.ILocalUserPreferences
 import com.example.sinope.domain.usecases.app_entry.AppEntryUseCase
 import com.example.sinope.domain.usecases.app_entry.ReadAppEntry
 import com.example.sinope.domain.usecases.app_entry.SaveAppEntry
-import com.example.sinope.domain.usecases.language.LanguageUseCases
-import com.example.sinope.domain.usecases.language.ReadLanguage
-import com.example.sinope.domain.usecases.language.SaveLanguage
+import com.example.sinope.domain.usecases.settings.language.LanguageUseCases
+import com.example.sinope.domain.usecases.settings.language.ReadLanguage
+import com.example.sinope.domain.usecases.settings.language.SaveLanguage
+import com.example.sinope.domain.usecases.settings.security.biometricLock.BiometricLockUseCases
+import com.example.sinope.domain.usecases.settings.security.biometricLock.ReadBiometricLock
+import com.example.sinope.domain.usecases.settings.security.biometricLock.SaveBiometricLock
+import com.example.sinope.domain.usecases.settings.security.screenshotProtection.ReadScreenshotProtection
+import com.example.sinope.domain.usecases.settings.security.screenshotProtection.SaveScreenshotProtection
+import com.example.sinope.domain.usecases.settings.security.screenshotProtection.ScreenshotProtectionUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,5 +53,22 @@ object DataStoreModuleDI {
     )
 
 
+    @Provides
+    @Singleton
+    fun provideBiometricLock(
+        localUserPreferences: ILocalUserPreferences
+    ): BiometricLockUseCases = BiometricLockUseCases(
+        saveBiometricLock = SaveBiometricLock(localUserPreferences),
+        readBiometricLock = ReadBiometricLock(localUserPreferences)
+    )
+
+    @Provides
+    @Singleton
+    fun provideScreenshotProtection(
+      localUserPreferences: ILocalUserPreferences
+    ): ScreenshotProtectionUseCases = ScreenshotProtectionUseCases(
+        saveScreenshotProtection = SaveScreenshotProtection(localUserPreferences),
+        readScreenshotProtection = ReadScreenshotProtection(localUserPreferences)
+    )
 
 }

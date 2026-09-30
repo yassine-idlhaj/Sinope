@@ -44,12 +44,10 @@ class OnboardingScreenTest {
     val composeRule = createComposeRule()
 
     private val events = mutableListOf<OnBoardingEvent>()
-    private var finishCount = 0
 
     private fun launchOnboarding() {
         composeRule.setContent {
             OnboardingScreen(
-                onFinish = { finishCount++ },
                 onEvent = { events += it },
             )
         }
@@ -90,8 +88,9 @@ class OnboardingScreenTest {
         composeRule.onNodeWithText("Skip").performClick()
 
         // The escape hatch for returning users: it must work from the very first frame, without
-        // walking the remaining pages.
-        assertEquals(1, finishCount)
+        // walking the remaining pages — and it must persist completion, or onboarding comes back
+        // on the next launch.
+        assertEquals(listOf(OnBoardingEvent.SaveAppEntry), events)
     }
 
     // ---------------------------------------------------------------- navigation
@@ -183,14 +182,14 @@ class OnboardingScreenTest {
     }
 
     @Test
-    fun `last page hides Back so the primary action stands alone`() {
+    fun `last page keeps Back so the user can review earlier pages`() {
         launchOnboarding()
 
         advance(2)
 
-        // Current, deliberate layout: the final call to action occupies the full width. Pinned
-        // here so a change to `showBack` is a conscious decision rather than an accident.
-        composeRule.onNodeWithText("Back").assertDoesNotExist()
+        // Deliberate: Back stays available on every page after the first, so a change to
+        // `showBack` is a conscious decision rather than an accident.
+        composeRule.onNodeWithText("Back").assertIsDisplayed()
     }
 
     @Test
@@ -216,16 +215,13 @@ class OnboardingScreenTest {
     }
 
     @Test
-    fun `Get Started does not go through the onFinish callback`() {
+    fun `Skip is offered on the first page only`() {
         launchOnboarding()
 
-        advance(2)
-        composeRule.onNodeWithText("Get Started").performClick()
-        composeRule.waitForIdle()
+        composeRule.onNodeWithText("Skip").assertExists()
 
-        // Documents a real asymmetry in the current screen: "Skip" exits via `onFinish` while
-        // "Get Started" only emits an event. A caller that navigates away on `onFinish` alone
-        // will leave the user stranded on the last page — see the report accompanying these tests.
-        assertEquals(0, finishCount)
+        advance(1)
+
+        composeRule.onNodeWithText("Skip").assertDoesNotExist()
     }
 }

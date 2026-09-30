@@ -15,6 +15,13 @@
     <string name="seconds_left">%1$d sn</string>
     <string name="totp_code_clip_label">TOTP kodu</string>
 
+    <!-- Search -->
+    <string name="search">Ara</string>
+    <string name="search_accounts">Hesaplarda ara…</string>
+    <string name="clear_search">Aramayı temizle</string>
+    <string name="search_no_results_title">Sonuç yok</string>
+    <string name="search_no_results_body">Kasanızda “%1$s” ile eşleşen bir şey yok.</string>
+
     <!-- Settings -->
     <string name="settings">Ayarlar</string>
     <string name="section_language">DİL</string>
@@ -37,8 +44,11 @@
     <string name="stat_security">Güvenlik</string>
 
     <!-- Language picker -->
+    <string name="language_subtitle">Uygulama dilini seçin</string>
     <string name="app_language">UYGULAMA DİLİ</string>
     <string name="language_description">Sinope, bir sonraki açılışta seçiminizi uygular. Bazı sistem iletişim kutuları cihaz dilinizi kullanmaya devam edebilir.</string>
+    <string name="language_system">Sistem varsayılanı</string>
+    <string name="language_system_subtitle">Cihaz dilini kullan</string>
     <string name="language_english">İngilizce</string>
     <string name="language_arabic">Arapça</string>
     <string name="language_french">Fransızca</string>
@@ -71,7 +81,7 @@
     <string name="advanced">GELİŞMİŞ</string>
     <string name="digits">Basamak</string>
     <string name="period">Süre</string>
-    <string name="add_to_vault">Kasaya ekle</string>
+    <string name="add_to_vault">Hesabı kaydet</string>
     <string name="account_already_exists">Hesap zaten mevcut</string>
 
     <!-- QR scanner -->
@@ -121,4 +131,81 @@
     <string name="couldnt_delete_account">Hesap silinemedi</string>
     <string name="dismiss">Kapat</string>
 
+    <!-- Backup, import and manual entry -->
+    <string name="export_dialog_title">Yedeği şifrele</string>
+    <string name="export_dialog_body">Bu yedek için bir parola seçin. Herhangi bir cihazda içe aktarmak için gerekir. Unutursanız Sinope parolayı kurtaramaz.</string>
+    <string name="backup_password">Yedek parolası</string>
+    <string name="backup_password_confirm">Parolayı doğrula</string>
+    <string name="backup_password_too_short">En az %1$d karakter kullanın</string>
+    <string name="backup_password_mismatch">Parolalar eşleşmiyor</string>
+    <string name="export_continue">Devam</string>
+    <string name="export_no_accounts">Dışa aktarılacak hesap yok</string>
+    <string name="export_failed">Dışa aktarma başarısız. Lütfen tekrar deneyin.</string>
+    <string name="exporting">Yedek şifreleniyor…</string>
+    <string name="import_dialog_title">Yedeğin kilidini aç</string>
+    <string name="import_dialog_body">Bu yedek oluşturulurken kullanılan parolayı girin.</string>
+    <string name="import_open">Aç</string>
+    <string name="import_wrong_password">Yanlış parola veya dosya değiştirilmiş</string>
+    <string name="import_invalid_file">Bu dosya bir Sinope yedeği değil</string>
+    <string name="import_failed">İçe aktarma başarısız. Lütfen tekrar deneyin.</string>
+    <string name="import_pick_another_file">Başka bir dosya seç</string>
+    <string name="import_waiting_for_file">Bir yedek dosyası seçin…</string>
+    <string name="import_decrypting">Yedek çözülüyor…</string>
+    <string name="import_saving">Hesaplar kaydediliyor…</string>
+    <string name="import_select_all">Tümünü seç / seçimi kaldır</string>
+    <string name="import_duplicate_badge">YİNELENEN</string>
+    <string name="done">Bitti</string>
+    <string name="hint_secret">Gizli anahtar</string>
+    <string name="manual_error_missing_name">Bir sağlayıcı veya hesap adı girin</string>
+    <string name="manual_error_missing_secret">Gizli anahtarı girin</string>
+    <string name="manual_error_invalid_secret">Bu gizli anahtar geçerli değil</string>
+    <string name="qr_invalid_code">Bu QR kod bir kimlik doğrulama kodu değil</string>
+    <string name="account_save_failed">Hesap kaydedilemedi</string>
+
+    <!-- Counted messages: plural forms per language -->
+    <plurals name="export_success">
+        <item quantity="one">%1$d hesap dışa aktarıldı</item>
+        <item quantity="other">%1$d hesap dışa aktarıldı</item>
+    </plurals>
+    <plurals name="import_found">
+        <item quantity="one">Bu yedekte %1$d hesap var</item>
+        <item quantity="other">Bu yedekte %1$d hesap var</item>
+    </plurals>
+    <plurals name="import_duplicates_found">
+        <item quantity="one">%1$d tanesi zaten Sinope\'ta, aşağıda işaretsiz</item>
+        <item quantity="other">%1$d tanesi zaten Sinope\'ta, aşağıda işaretsiz</item>
+    </plurals>
+    <plurals name="import_action">
+        <item quantity="one">%1$d hesabı içe aktar</item>
+        <item quantity="other">%1$d hesabı içe aktar</item>
+    </plurals>
+    <plurals name="import_success">
+        <item quantity="one">%1$d hesap içe aktarıldı</item>
+        <item quantity="other">%1$d hesap içe aktarıldı</item>
+    </plurals>
+
+    <!-- Delete all accounts -->
+    <string name="delete_all_dialog_body">Bu, tüm hesapları ve gizli anahtarlarını bu cihazdan siler. Geri alınamaz.</string>
+    <string name="delete_all_dialog_backup_hint">Bu kodlara yeniden ihtiyacınız olabilirse önce bir yedek dışa aktarın.</string>
+    <string name="delete_all_confirm">Tümünü sil</string>
+    <string name="delete_all_in_progress">Siliniyor…</string>
+    <string name="delete_all_nothing_to_delete">Silinecek hesap yok</string>
+    <string name="delete_all_success">Tüm hesaplar silindi</string>
+    <string name="delete_all_failed">Hesaplar silinemedi</string>
+    <plurals name="delete_all_dialog_title">
+        <item quantity="one">Tek hesabınız silinsin mi?</item>
+        <item quantity="other">%1$d hesabın tümü silinsin mi?</item>
+    </plurals>
+
+    <!-- App lock -->
+    <string name="locked_title">Sinope kilitli</string>
+    <string name="locked_subtitle">Kasanızı açmak için kimliğinizi doğrulayın.</string>
+    <string name="unlock">Kilidi aç</string>
+    <string name="biometric_prompt_title">Sinope kilidini aç</string>
+    <string name="biometric_prompt_subtitle">Hesaplarınıza erişmek için kimliğinizi doğrulayın</string>
+    <string name="biometric_error_no_hardware">Bu cihazda biyometrik donanım yok.</string>
+    <string name="biometric_error_unavailable">Biyometrik donanım şu anda kullanılamıyor.</string>
+    <string name="biometric_error_none_enrolled">Bu cihazda kayıtlı biyometri yok.</string>
+    <string name="biometric_error_generic">Biyometrik kimlik doğrulama kullanılamıyor.</string>
+    <string name="biometric_error_cancelled">Kimlik doğrulama iptal edildi.</string>
 </resources>

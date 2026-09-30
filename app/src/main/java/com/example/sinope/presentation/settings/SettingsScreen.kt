@@ -1,5 +1,7 @@
 package com.example.sinope.presentation.settings
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -29,10 +31,15 @@ import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.SaveAlt
 import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material.icons.outlined.Upload
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,17 +47,32 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.sinope.R
 import com.example.sinope.core.common.BackBar
 import com.example.sinope.core.common.RowDivider
 import com.example.sinope.core.common.SectionLabel
+import com.example.sinope.core.common.SinopeSnackbarHost
+import com.example.sinope.core.common.SinopeSnackbarTone
+import com.example.sinope.core.common.showSinopeSnackbar
 import com.example.sinope.core.utils.SinopeColors
-import com.example.sinope.R
-import androidx.compose.ui.res.stringResource
+import com.example.sinope.core.utils.findFragmentActivity
+import com.example.sinope.core.utils.showBiometricPrompt
+import com.example.sinope.presentation.settings.components.DeleteAllAccountsDialog
+import com.example.sinope.presentation.settings.components.ExportBackupDialog
+import com.example.sinope.presentation.settings.viewModel.SettingsEvent
+import com.example.sinope.presentation.settings.viewModel.SettingsUiEvent
+import com.example.sinope.presentation.settings.viewModel.SettingsViewModel
+import kotlinx.coroutines.launch
 
 /**
  * Settings screen: vault stats at a glance, the two security switches, backup import/export and
@@ -60,18 +82,50 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun SettingsScreen(
     modifier: Modifier = Modifier,
-    accountCount: Int = 0,
-    favoriteCount: Int = 0,
-    biometricLockEnabled: Boolean = false,
-    screenshotProtectionEnabled: Boolean = false,
     onBack: () -> Unit = {},
-    onToggleBiometricLock: () -> Unit = {},
-    onToggleScreenshotProtection: () -> Unit = {},
-    onExportAccounts: () -> Unit = {},
+    settingsViewModel : SettingsViewModel = hiltViewModel(),
     onImportAccounts: () -> Unit = {},
     onLanguageChange: () -> Unit = {},
-    onDeleteAllAccounts: () -> Unit = {},
 ) {
+
+    val state by settingsViewModel.settingsState.collectAsStateWithLifecycle()
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val resources = LocalResources.current
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    // System "save file" picker (Storage Access Framework): the user chooses where the backup
+    // goes, and we get a URI to write to without needing any storage permission.
+    val exportLocationLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("application/octet-stream")
+    ) { uri ->
+        settingsViewModel.onEvent(SettingsEvent.ExportLocationPicked(uri?.toString()))
+    }
+
+    LaunchedEffect(Unit) {
+        settingsViewModel.uiEvent.collect { event ->
+            when (event) {
+                is SettingsUiEvent.PickExportLocation -> {
+                    exportLocationLauncher.launch(event.suggestedFileName)
+                }
+                is SettingsUiEvent.ShowMessage -> {
+                    snackbarHostState.showSinopeSnackbar(
+                        resources.getString(event.messageRes, *event.formatArgs.toTypedArray()),
+                        event.tone,
+                    )
+                }
+
+                is SettingsUiEvent.ShowCountedMessage -> {
+                    snackbarHostState.showSinopeSnackbar(
+                        resources.getQuantityString(event.pluralRes, event.quantity, event.quantity),
+                        event.tone,
+                    )
+                }
+            }
+        }
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -89,8 +143,8 @@ fun SettingsScreen(
                 Spacer(Modifier.height(6.dp))
 
                 VaultStatsCard(
-                    accountCount = accountCount,
-                    favoriteCount = favoriteCount,
+                    accountCount = state.accountCount,
+                    favoriteCount = state.favoriteCount,
                     modifier = Modifier.padding(horizontal = 16.dp),
                 )
 
@@ -102,7 +156,7 @@ fun SettingsScreen(
                         icon = Icons.Outlined.Translate,
                         accent = SinopeColors.Cyan,
                         title = stringResource(R.string.language),
-                        subtitle = stringResource(R.string.require_on_launch),
+                        subtitle = stringResource(R.string.language_subtitle),
                         onClick = onLanguageChange,
                     )
                 }
@@ -116,8 +170,46 @@ fun SettingsScreen(
                         accent = SinopeColors.Cyan,
                         title = stringResource(R.string.biometric_lock),
                         subtitle = stringResource(R.string.require_on_launch),
-                        checked = biometricLockEnabled,
-                        onToggle = onToggleBiometricLock,
+                        checked = state.biometricLockEnabled ,
+                        onToggle = { enable ->
+                            // Turning it ON has to be proved first: persisting the flag and only
+                            // then prompting is what let a cancelled prompt lock the user out of
+                            // a vault they could never re-open. Turning it OFF needs no proof —
+                            // the session is already unlocked.
+                            if (enable) {
+                                val activity = context.findFragmentActivity()
+
+                                if (activity == null) {
+                                    scope.launch {
+                                        snackbarHostState.showSinopeSnackbar(
+                                            resources.getString(R.string.biometric_error_generic),
+                                            SinopeSnackbarTone.Error,
+                                        )
+                                    }
+                                } else {
+                                    showBiometricPrompt(
+                                        activity = activity,
+                                        onSuccess = {
+                                            settingsViewModel.onEvent(
+                                                SettingsEvent.ToggleBiometricLock(true)
+                                            )
+                                        },
+                                        onError = { message ->
+                                            scope.launch {
+                                                snackbarHostState.showSinopeSnackbar(
+                                                    message,
+                                                    SinopeSnackbarTone.Error,
+                                                )
+                                            }
+                                        },
+                                    )
+                                }
+                            } else {
+                                settingsViewModel.onEvent(
+                                    SettingsEvent.ToggleBiometricLock(false)
+                                )
+                            }
+                        },
                     )
                     RowDivider()
                     SettingsToggleRow(
@@ -125,8 +217,12 @@ fun SettingsScreen(
                         accent = SinopeColors.Danger,
                         title = stringResource(R.string.screenshot_protection),
                         subtitle = stringResource(R.string.prevent_capture),
-                        checked = screenshotProtectionEnabled,
-                        onToggle = onToggleScreenshotProtection,
+                        checked = state.screenshotProtectionEnabled,
+                        onToggle = {
+                            settingsViewModel.onEvent(
+                                SettingsEvent.ToggleScreenshotProtection(it)
+                            )
+                        },
                     )
                 }
 
@@ -139,7 +235,7 @@ fun SettingsScreen(
                         accent = SinopeColors.Green,
                         title = stringResource(R.string.export_accounts),
                         subtitle = stringResource(R.string.encrypted_backup),
-                        onClick = onExportAccounts,
+                        onClick = { settingsViewModel.onEvent(SettingsEvent.ExportClicked) },
                     )
                     RowDivider()
                     SettingsNavRow(
@@ -165,11 +261,55 @@ fun SettingsScreen(
                         subtitle = stringResource(R.string.permanently_removes_all_data),
                         titleColor = SinopeColors.Danger,
                         chevronColor = SinopeColors.Danger,
-                        onClick = onDeleteAllAccounts,
+                        onClick = { settingsViewModel.onEvent(SettingsEvent.DeleteAllRequested) },
                     )
                 }
             }
         }
+
+        if (state.showExportDialog) {
+            ExportBackupDialog(
+                error = state.exportPasswordError,
+                onConfirm = { password, confirmation ->
+                    settingsViewModel.onEvent(SettingsEvent.ExportPasswordConfirmed(password, confirmation))
+                },
+                onDismiss = { settingsViewModel.onEvent(SettingsEvent.ExportDialogDismissed) },
+            )
+        }
+
+        if (state.isExporting) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(SinopeColors.Background.copy(alpha = 0.7f))
+                    .clickable(enabled = true, onClick = {}),
+                contentAlignment = Alignment.Center,
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    CircularProgressIndicator(color = SinopeColors.Cyan)
+                    Spacer(Modifier.height(12.dp))
+                    Text(
+                        text = stringResource(R.string.exporting),
+                        color = SinopeColors.TextSecondary,
+                        fontSize = 12.sp,
+                    )
+                }
+            }
+        }
+
+        if (state.showDeleteAllDialog) {
+            DeleteAllAccountsDialog(
+                accountCount = state.accountCount,
+                isDeleting = state.isDeletingAll,
+                onConfirm = { settingsViewModel.onEvent(SettingsEvent.DeleteAllConfirmed) },
+                onDismiss = { settingsViewModel.onEvent(SettingsEvent.DeleteAllDismissed) },
+            )
+        }
+
+        SinopeSnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier.align(Alignment.BottomCenter),
+        )
     }
 }
 
@@ -284,16 +424,16 @@ private fun SettingsToggleRow(
     title: String,
     subtitle: String,
     checked: Boolean,
-    onToggle: () -> Unit,
+    onToggle: (Boolean) -> Unit,
 ) {
     SettingsRow(
         icon = icon,
         accent = accent,
         title = title,
         subtitle = subtitle,
-        onClick = onToggle,
+        onClick = { },
     ) {
-        SinopeSwitch(checked = checked)
+        SinopeSwitch(checked = checked,onToggle)
     }
 }
 
@@ -384,7 +524,10 @@ private fun IconTile(icon: ImageVector, accent: Color) {
 
 /** On/off track. Not clickable itself — the surrounding row is the hit target. */
 @Composable
-private fun SinopeSwitch(checked: Boolean) {
+private fun SinopeSwitch(
+    checked: Boolean,
+    onToggle: (Boolean) -> Unit
+) {
     val thumbOffset by animateDpAsState(
         targetValue = if (checked) 20.dp else 3.dp,
         animationSpec = tween(180),
@@ -397,6 +540,7 @@ private fun SinopeSwitch(checked: Boolean) {
             .height(23.dp)
             .clip(CircleShape)
             .background(if (checked) SinopeColors.Cyan else SinopeColors.Track)
+            .clickable{ onToggle(!checked)}
             .border(
                 width = 1.dp,
                 color = if (checked) SinopeColors.Cyan else SinopeColors.Border,
@@ -423,10 +567,5 @@ private fun SinopeSwitch(checked: Boolean) {
 )
 @Composable
 private fun SettingsScreenPreview() {
-    SettingsScreen(
-        accountCount = 4,
-        favoriteCount = 1,
-        biometricLockEnabled = false,
-        screenshotProtectionEnabled = true,
-    )
+    Text(text = "Preview")
 }

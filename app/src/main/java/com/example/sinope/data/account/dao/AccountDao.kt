@@ -21,6 +21,10 @@ interface AccountDao {
     @Insert
     suspend fun insertAccount(account: AccountEntity)
 
+    /** Room runs a list insert inside a single transaction: all rows land, or none do. */
+    @Insert
+    suspend fun insertAccounts(accounts: List<AccountEntity>)
+
     @Update
     suspend fun updateAccount(account: AccountEntity)
 
@@ -30,6 +34,16 @@ interface AccountDao {
     @Query("UPDATE accounts set favorite = :favorite where id = :id")
     suspend fun updateFavorite(id: Long, favorite: Boolean)
 
-    @Query("SELECT * FROM accounts WHERE secret = :secret LIMIT 1")
-    suspend fun getAccountBySecret(secret:String): AccountEntity?
+    @Query("SELECT EXISTS (SELECT 1 FROM accounts WHERE issuer = :issuer COLLATE NOCASE AND accountName = :accountName COLLATE NOCASE)")
+    suspend fun accountExists(issuer:String,accountName:String): Boolean
+
+    @Query("SELECT * FROM accounts")
+    suspend fun getAccountsOnce(): List<AccountEntity>
+
+    @Query("UPDATE accounts SET secret = :secret WHERE id = :id")
+    suspend fun updateSecret(id: Long, secret: String)
+
+    /** Empties the table in one statement. Returns how many rows went. */
+    @Query("DELETE FROM accounts")
+    suspend fun deleteAllAccounts(): Int
 }

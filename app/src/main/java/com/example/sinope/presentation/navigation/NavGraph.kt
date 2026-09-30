@@ -10,10 +10,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.sinope.presentation.addaccount.AddAccountScreen
 import com.example.sinope.presentation.editAccount.EditAccountScreen
 import com.example.sinope.presentation.home.HomeScreen
-import com.example.sinope.presentation.language.LanguageScreen
+import com.example.sinope.presentation.settings.language.LanguageScreen
 import com.example.sinope.presentation.onboarding.OnboardingScreen
 import com.example.sinope.presentation.onboarding.viewmodel.OnBoardingViewModel
 import com.example.sinope.presentation.onboarding.viewmodel.UiEvent
+import com.example.sinope.presentation.importaccounts.ImportAccountsScreen
 import com.example.sinope.presentation.settings.SettingsScreen
 
 
@@ -97,7 +98,8 @@ fun NavGraph(
             ) {
                 SettingsScreen(
                     onBack = { navController.popBackStack() },
-                    onLanguageChange = { navController.navigate(Route.LanguageScreen.route)}
+                    onLanguageChange = { navController.navigate(Route.LanguageScreen.route)},
+                    onImportAccounts = { navController.navigate(Route.ImportAccountsScreen.route) }
                 )
             }
 
@@ -106,6 +108,14 @@ fun NavGraph(
             ) {
                 LanguageScreen(
                     onBack = { navController.popBackStack()}
+                )
+            }
+
+            composable(
+                route = Route.ImportAccountsScreen.route
+            ) {
+                ImportAccountsScreen(
+                    onBack = { navController.popBackStack() }
                 )
             }
         }

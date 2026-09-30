@@ -14,7 +14,13 @@ interface IAccountRepository {
     suspend fun updateAccount(account: Account)
 
     suspend fun deleteAccount(account: Account)
+
+    /** Removes every account. Returns how many were removed. */
+    suspend fun deleteAllAccounts(): Int
     suspend fun updateFavorite(id: Long, favorite: Boolean)
 
-    suspend fun getAccountBySecret(secret:String): Account?
+    suspend fun accountExists(issuer:String,accountName:String): Boolean
+
+    /** Saves several accounts in one transaction (used by import). */
+    suspend fun insertAccounts(accounts: List<Account>)
 }

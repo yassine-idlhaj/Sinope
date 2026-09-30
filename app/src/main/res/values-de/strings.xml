@@ -15,6 +15,13 @@
     <string name="seconds_left">%1$d s</string>
     <string name="totp_code_clip_label">TOTP-Code</string>
 
+    <!-- Search -->
+    <string name="search">Suchen</string>
+    <string name="search_accounts">Konten suchen…</string>
+    <string name="clear_search">Suche löschen</string>
+    <string name="search_no_results_title">Keine Treffer</string>
+    <string name="search_no_results_body">Nichts in deinem Tresor passt zu „%1$s“.</string>
+
     <!-- Settings -->
     <string name="settings">Einstellungen</string>
     <string name="section_language">SPRACHE</string>
@@ -37,8 +44,11 @@
     <string name="stat_security">Sicherheit</string>
 
     <!-- Language picker -->
+    <string name="language_subtitle">App-Sprache wählen</string>
     <string name="app_language">APP-SPRACHE</string>
     <string name="language_description">Sinope übernimmt deine Auswahl beim nächsten Start. Einige Systemdialoge verwenden möglicherweise weiterhin die Sprache deines Geräts.</string>
+    <string name="language_system">Systemstandard</string>
+    <string name="language_system_subtitle">Gerätesprache folgen</string>
     <string name="language_english">Englisch</string>
     <string name="language_arabic">Arabisch</string>
     <string name="language_french">Französisch</string>
@@ -71,7 +81,7 @@
     <string name="advanced">ERWEITERT</string>
     <string name="digits">Stellen</string>
     <string name="period">Intervall</string>
-    <string name="add_to_vault">Zum Tresor hinzufügen</string>
+    <string name="add_to_vault">Konto speichern</string>
     <string name="account_already_exists">Konto existiert bereits</string>
 
     <!-- QR scanner -->
@@ -121,4 +131,81 @@
     <string name="couldnt_delete_account">Konto konnte nicht gelöscht werden</string>
     <string name="dismiss">Schließen</string>
 
+    <!-- Backup, import and manual entry -->
+    <string name="export_dialog_title">Backup verschlüsseln</string>
+    <string name="export_dialog_body">Wähle ein Passwort für dieses Backup. Du brauchst es, um es auf einem beliebigen Gerät zu importieren. Sinope kann es nicht wiederherstellen, wenn du es vergisst.</string>
+    <string name="backup_password">Backup-Passwort</string>
+    <string name="backup_password_confirm">Passwort bestätigen</string>
+    <string name="backup_password_too_short">Mindestens %1$d Zeichen verwenden</string>
+    <string name="backup_password_mismatch">Passwörter stimmen nicht überein</string>
+    <string name="export_continue">Weiter</string>
+    <string name="export_no_accounts">Keine Konten zum Exportieren</string>
+    <string name="export_failed">Export fehlgeschlagen. Bitte erneut versuchen.</string>
+    <string name="exporting">Backup wird verschlüsselt…</string>
+    <string name="import_dialog_title">Backup entsperren</string>
+    <string name="import_dialog_body">Gib das Passwort ein, mit dem dieses Backup erstellt wurde.</string>
+    <string name="import_open">Öffnen</string>
+    <string name="import_wrong_password">Falsches Passwort oder Datei wurde verändert</string>
+    <string name="import_invalid_file">Diese Datei ist kein Sinope-Backup</string>
+    <string name="import_failed">Import fehlgeschlagen. Bitte erneut versuchen.</string>
+    <string name="import_pick_another_file">Andere Datei wählen</string>
+    <string name="import_waiting_for_file">Backup-Datei wählen…</string>
+    <string name="import_decrypting">Backup wird entschlüsselt…</string>
+    <string name="import_saving">Konten werden gespeichert…</string>
+    <string name="import_select_all">Alle aus-/abwählen</string>
+    <string name="import_duplicate_badge">DUPLIKAT</string>
+    <string name="done">Fertig</string>
+    <string name="hint_secret">Geheimer Schlüssel</string>
+    <string name="manual_error_missing_name">Gib einen Anbieter oder Kontonamen ein</string>
+    <string name="manual_error_missing_secret">Gib den geheimen Schlüssel ein</string>
+    <string name="manual_error_invalid_secret">Dieser geheime Schlüssel ist ungültig</string>
+    <string name="qr_invalid_code">Dieser QR-Code ist kein Authentifizierungscode</string>
+    <string name="account_save_failed">Konto konnte nicht gespeichert werden</string>
+
+    <!-- Counted messages: plural forms per language -->
+    <plurals name="export_success">
+        <item quantity="one">%1$d Konto exportiert</item>
+        <item quantity="other">%1$d Konten exportiert</item>
+    </plurals>
+    <plurals name="import_found">
+        <item quantity="one">%1$d Konto in diesem Backup</item>
+        <item quantity="other">%1$d Konten in diesem Backup</item>
+    </plurals>
+    <plurals name="import_duplicates_found">
+        <item quantity="one">%1$d bereits in Sinope, unten nicht ausgewählt</item>
+        <item quantity="other">%1$d bereits in Sinope, unten nicht ausgewählt</item>
+    </plurals>
+    <plurals name="import_action">
+        <item quantity="one">%1$d Konto importieren</item>
+        <item quantity="other">%1$d Konten importieren</item>
+    </plurals>
+    <plurals name="import_success">
+        <item quantity="one">%1$d Konto importiert</item>
+        <item quantity="other">%1$d Konten importiert</item>
+    </plurals>
+
+    <!-- Delete all accounts -->
+    <string name="delete_all_dialog_body">Damit werden alle Konten und ihre Geheimnisse von diesem Gerät entfernt. Das lässt sich nicht rückgängig machen.</string>
+    <string name="delete_all_dialog_backup_hint">Exportiere zuerst ein Backup, falls du diese Codes noch brauchst.</string>
+    <string name="delete_all_confirm">Alles löschen</string>
+    <string name="delete_all_in_progress">Wird gelöscht…</string>
+    <string name="delete_all_nothing_to_delete">Keine Konten zum Löschen</string>
+    <string name="delete_all_success">Alle Konten gelöscht</string>
+    <string name="delete_all_failed">Konten konnten nicht gelöscht werden</string>
+    <plurals name="delete_all_dialog_title">
+        <item quantity="one">Dein einziges Konto löschen?</item>
+        <item quantity="other">Alle %1$d Konten löschen?</item>
+    </plurals>
+
+    <!-- App lock -->
+    <string name="locked_title">Sinope ist gesperrt</string>
+    <string name="locked_subtitle">Authentifiziere dich, um deinen Tresor zu öffnen.</string>
+    <string name="unlock">Entsperren</string>
+    <string name="biometric_prompt_title">Sinope entsperren</string>
+    <string name="biometric_prompt_subtitle">Authentifiziere dich, um auf deine Konten zuzugreifen</string>
+    <string name="biometric_error_no_hardware">Dieses Gerät hat keine biometrische Hardware.</string>
+    <string name="biometric_error_unavailable">Die biometrische Hardware ist derzeit nicht verfügbar.</string>
+    <string name="biometric_error_none_enrolled">Auf diesem Gerät ist keine Biometrie eingerichtet.</string>
+    <string name="biometric_error_generic">Biometrische Authentifizierung ist nicht verfügbar.</string>
+    <string name="biometric_error_cancelled">Authentifizierung abgebrochen.</string>
 </resources>

@@ -32,6 +32,30 @@ class FakeLocalUserPreferences(initialAppEntry: Boolean = false) : ILocalUserPre
         return appEntry
     }
 
+    // --- Settings the app_entry tests don't exercise, kept in memory so the fake stays usable. ---
+
+    private val language = MutableStateFlow("")
+    private val biometricLock = MutableStateFlow(false)
+    private val screenshotProtection = MutableStateFlow(false)
+
+    override suspend fun saveLanguage(language: String) {
+        this.language.value = language
+    }
+
+    override fun readLanguage(): Flow<String> = language
+
+    override suspend fun saveBiometricLock(biometricLock: Boolean) {
+        this.biometricLock.value = biometricLock
+    }
+
+    override fun readBiometricLock(): Flow<Boolean> = biometricLock
+
+    override suspend fun saveScreenshotProtection(screenshotProtection: Boolean) {
+        this.screenshotProtection.value = screenshotProtection
+    }
+
+    override fun readScreenshotProtection(): Flow<Boolean> = screenshotProtection
+
     /** Pushes a new value to collectors of [readAppEntry], simulating an out-of-band write. */
     fun setAppEntry(value: Boolean) {
         appEntry.value = value

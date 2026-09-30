@@ -1,4 +1,4 @@
-package com.example.sinope.domain.usecases.language
+package com.example.sinope.domain.usecases.settings.language
 
 import com.example.sinope.domain.model.AppLanguage
 import com.example.sinope.domain.repository.app_manager.ILocalUserPreferences
