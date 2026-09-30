@@ -1,9 +1,25 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.serialization)
+}
+
+/**
+ * Release signing is configured from keystore.properties, which is gitignored and never leaves
+ * this machine. When it is absent — a fresh clone, CI, someone else's checkout — the release
+ * build simply goes unsigned instead of failing, so the project still builds for everyone.
+ *
+ * See keystore.properties.example for the expected keys.
+ */
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use(::load)
+    }
 }
 
 android {
@@ -24,12 +40,33 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            create("release") {
+                storeFile = rootProject.file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            // Null when keystore.properties is missing, which leaves the build unsigned.
+            signingConfig = signingConfigs.findByName("release")
+
             // R8: strip unused code and resources. Cuts the dex files by an order of magnitude.
             optimization {
                 enable = true
             }
+
+            // Keep rules for libraries that resolve classes reflectively and so are
+            // invisible to R8's reachability analysis. See proguard-rules.pro.
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
     compileOptions {
