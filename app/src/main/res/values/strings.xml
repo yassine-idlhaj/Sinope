@@ -66,12 +66,12 @@
     <string name="onboarding_welcome_title">Welcome to Sinope</string>
     <string name="onboarding_welcome_body">Generate secure verification codes for all your accounts. Your secrets stay on your device.</string>
     <string name="onboarding_control_title">Your codes. Your control.</string>
-    <string name="onboarding_bullet_stored_locally">Stored locally</string>
+    <string name="onboarding_bullet_stored_locally">Encrypted on your device</string>
     <string name="onboarding_bullet_no_account">No account required</string>
-    <string name="onboarding_bullet_offline">Works completely offline</string>
+    <string name="onboarding_bullet_offline">No internet access, by design</string>
     <string name="onboarding_bullet_backups">Export encrypted backups anytime</string>
     <string name="onboarding_first_account_title">Let\'s add your first account</string>
-    <string name="onboarding_first_account_body">Scan a QR code from your favorite service or add an account manually.</string>
+    <string name="onboarding_first_account_body">Scan a QR code from your provider, or add an account manually. The camera is only used for scanning — you can skip it entirely.</string>
     <string name="skip">Skip</string>
     <string name="back">Back</string>
     <string name="next">Next</string>

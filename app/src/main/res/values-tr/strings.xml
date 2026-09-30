@@ -62,12 +62,12 @@
     <string name="onboarding_welcome_title">Sinope\'a hoş geldiniz</string>
     <string name="onboarding_welcome_body">Tüm hesaplarınız için güvenli doğrulama kodları oluşturun. Sırlarınız cihazınızda kalır.</string>
     <string name="onboarding_control_title">Kodlarınız. Kontrol sizde.</string>
-    <string name="onboarding_bullet_stored_locally">Yerel olarak saklanır</string>
+    <string name="onboarding_bullet_stored_locally">Cihazınızda şifreli</string>
     <string name="onboarding_bullet_no_account">Hesap gerekmez</string>
-    <string name="onboarding_bullet_offline">Tamamen çevrimdışı çalışır</string>
+    <string name="onboarding_bullet_offline">Tasarım gereği internet erişimi yok</string>
     <string name="onboarding_bullet_backups">İstediğiniz zaman şifreli yedek alın</string>
     <string name="onboarding_first_account_title">İlk hesabınızı ekleyelim</string>
-    <string name="onboarding_first_account_body">Sevdiğiniz hizmetten bir QR kodu tarayın veya hesabı elle ekleyin.</string>
+    <string name="onboarding_first_account_body">Sağlayıcınızın QR kodunu tarayın veya hesabı elle ekleyin. Kamera yalnızca tarama için kullanılır; tamamen atlayabilirsiniz.</string>
     <string name="skip">Atla</string>
     <string name="back">Geri</string>
     <string name="next">İleri</string>

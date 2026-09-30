@@ -152,9 +152,9 @@ class OnboardingScreenTest {
         // These bullets are the product promise Sinope is built on; a dropped one is a silent
         // regression that no crash or layout check would catch.
         listOf(
-            "Stored locally",
+            "Encrypted on your device",
             "No account required",
-            "Works completely offline",
+            "No internet access, by design",
             "Export encrypted backups anytime",
         ).forEach { composeRule.onNodeWithText(it).assertIsDisplayed() }
     }

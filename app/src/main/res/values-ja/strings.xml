@@ -62,12 +62,12 @@
     <string name="onboarding_welcome_title">Sinope へようこそ</string>
     <string name="onboarding_welcome_body">すべてのアカウントの安全な確認コードを生成します。シークレットは端末内に保管されます。</string>
     <string name="onboarding_control_title">あなたのコードを、あなたの管理下に。</string>
-    <string name="onboarding_bullet_stored_locally">端末内に保存</string>
+    <string name="onboarding_bullet_stored_locally">端末内で暗号化</string>
     <string name="onboarding_bullet_no_account">アカウント登録は不要</string>
-    <string name="onboarding_bullet_offline">完全オフラインで動作</string>
+    <string name="onboarding_bullet_offline">設計上インターネットに接続しません</string>
     <string name="onboarding_bullet_backups">いつでも暗号化バックアップを書き出せます</string>
     <string name="onboarding_first_account_title">最初のアカウントを追加しましょう</string>
-    <string name="onboarding_first_account_body">お使いのサービスの QR コードをスキャンするか、手動でアカウントを追加します。</string>
+    <string name="onboarding_first_account_body">提供元の QR コードをスキャンするか、手動でアカウントを追加します。カメラはスキャンにのみ使用され、使わずに進むこともできます。</string>
     <string name="skip">スキップ</string>
     <string name="back">戻る</string>
     <string name="next">次へ</string>

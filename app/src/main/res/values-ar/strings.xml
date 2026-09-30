@@ -62,12 +62,12 @@
     <string name="onboarding_welcome_title">مرحبًا بك في Sinope</string>
     <string name="onboarding_welcome_body">أنشئ رموز تحقق آمنة لجميع حساباتك. تبقى أسرارك على جهازك.</string>
     <string name="onboarding_control_title">رموزك. تحت سيطرتك.</string>
-    <string name="onboarding_bullet_stored_locally">مخزَّنة محليًا</string>
+    <string name="onboarding_bullet_stored_locally">مشفّرة على جهازك</string>
     <string name="onboarding_bullet_no_account">لا حاجة إلى حساب</string>
-    <string name="onboarding_bullet_offline">يعمل دون اتصال بالكامل</string>
+    <string name="onboarding_bullet_offline">بلا إنترنت، بحكم التصميم</string>
     <string name="onboarding_bullet_backups">تصدير نسخ احتياطية مشفّرة في أي وقت</string>
     <string name="onboarding_first_account_title">لنُضِف حسابك الأول</string>
-    <string name="onboarding_first_account_body">امسح رمز QR من خدمتك المفضلة أو أضف حسابًا يدويًا.</string>
+    <string name="onboarding_first_account_body">امسح رمز QR من مزوّد الخدمة أو أضف حسابًا يدويًا. تُستخدَم الكاميرا للمسح فقط، ويمكنك الاستغناء عنها تمامًا.</string>
     <string name="skip">تخطٍّ</string>
     <string name="back">رجوع</string>
     <string name="next">التالي</string>
