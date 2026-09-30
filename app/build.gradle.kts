@@ -52,6 +52,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Distinct applicationId so a debug build installs alongside the release one
+            // instead of replacing it — and so the two keep separate data.
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
+
         release {
             // Null when keystore.properties is missing, which leaves the build unsigned.
             signingConfig = signingConfigs.findByName("release")

@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Matches SinopeColors.Background; used as the window background. -->
+    <color name="sinope_background">#FF0A0A0F</color>
 </resources>

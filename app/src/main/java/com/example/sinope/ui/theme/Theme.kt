@@ -1,58 +1,59 @@
 package com.example.sinope.ui.theme
 
-import android.app.Activity
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import com.example.sinope.core.utils.SinopeColors
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
+/**
+ * Sinope is a dark-only app: every screen paints itself from [SinopeColors].
+ *
+ * The Material scheme therefore has to be dark too, and derived from the same palette. It used to
+ * follow the system theme with dynamic colour, which meant Material-owned surfaces — the bottom
+ * sheet, dialogs, ripples — were light on a phone in light mode while the app's own content stayed
+ * near-white. The long-press sheet rendered white text on a white sheet and was unreadable.
+ *
+ * Nothing here should follow the system or the wallpaper. One palette, always.
+ */
+private val SinopeColorScheme = darkColorScheme(
+    primary = SinopeColors.Cyan,
+    onPrimary = SinopeColors.Background,
+    secondary = SinopeColors.Violet,
+    onSecondary = SinopeColors.Background,
+    tertiary = SinopeColors.Pink,
+    onTertiary = SinopeColors.Background,
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    background = SinopeColors.Background,
+    onBackground = SinopeColors.TextPrimary,
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    // ModalBottomSheet and friends pull their container from the surfaceContainer family
+    // depending on the Material3 version, so every step maps to the vault's own surfaces.
+    surface = SinopeColors.Surface,
+    onSurface = SinopeColors.TextPrimary,
+    surfaceVariant = SinopeColors.InputBg,
+    onSurfaceVariant = SinopeColors.TextSecondary,
+    surfaceContainerLowest = SinopeColors.Background,
+    surfaceContainerLow = SinopeColors.SurfaceAlt,
+    surfaceContainer = SinopeColors.Surface,
+    surfaceContainerHigh = SinopeColors.Surface,
+    surfaceContainerHighest = SinopeColors.InputBg,
+    inverseSurface = SinopeColors.TextPrimary,
+    inverseOnSurface = SinopeColors.Background,
+
+    outline = SinopeColors.Border,
+    outlineVariant = SinopeColors.Border,
+
+    error = SinopeColors.Danger,
+    onError = SinopeColors.Background,
+    errorContainer = SinopeColors.Danger,
+    onErrorContainer = SinopeColors.TextPrimary,
 )
 
 @Composable
-fun SinopeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
+fun SinopeTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = SinopeColorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }

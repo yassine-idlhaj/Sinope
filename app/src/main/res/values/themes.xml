@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!--    <style name="Theme.Sinope" parent="android:Theme.Material.Light.NoActionBar" />-->
-    <style name="Theme.Sinope" parent="Theme.AppCompat.Light.NoActionBar" />
+    <!--
+        Sinope is dark-only, so the window theme is too. This used to be
+        Theme.AppCompat.Light.NoActionBar, which left a white window behind the
+        Compose content and flashed white between the splash and the first frame.
 
+        AppCompat (not Material) because MainActivity is an AppCompatActivity —
+        per-app locales below API 33 depend on it.
+    -->
+    <style name="Theme.Sinope" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/sinope_background</item>
+    </style>
 
 </resources>
