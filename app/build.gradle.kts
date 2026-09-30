@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.sinope"
+        applicationId = "io.github.yassineidlhaj.sinope"
         minSdk = 30
         targetSdk = 37
         versionCode = 1
